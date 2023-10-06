@@ -17,7 +17,7 @@ export default function NewsSection() {
           <ArrowRight />
         </div>
       </div>
-      <div className="grid grid-rows-2 grid-cols-[50%_23.8%_23.8%] gap-5 h-full">
+      <div className="sm:grid flex flex-col grid-rows-2 grid-cols-[50%_23.8%_23.8%] gap-5 h-full">
         <div className=" row-start-1 row-end-3 relative">
           <NewsCard />
         </div>
@@ -44,11 +44,13 @@ function NewsCard() {
       <img
         src="./bg-image.jpg"
         alt=""
-        className="bg-contain h-full w-full contrast-50"
+        className="bg-contain h-full sm:w-full w-2/3 contrast-50"
       />
 
-      <div className="absolute bottom-4 pl-4">
-        <h1 className="text-white text-xl py-1">Marine wars</h1>
+      <div className="absolute bottom-4 pl-4 w-full">
+        <h1 className="text-white text-xl py-1 flex flex-col flex-wrap">
+          Marine wars
+        </h1>
         <p className="text-grey pl-1 border-black border-l-2">
           Lorem ipsum dolor sit amet consectetur adipisicing elit.
         </p>

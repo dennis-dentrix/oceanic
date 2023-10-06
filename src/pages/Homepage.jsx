@@ -4,7 +4,7 @@ import NewsSection from "../features/homepage/NewsSection";
 
 export default function Homepage() {
   return (
-    <div className="grid grid-rows-[30rem_25rem_auto] gap-9 h-full">
+    <div className="flex flex-col  sm:grid sm:grid-rows-[30rem_25rem_auto] gap-9 h-full">
       <Landing />
       {/* NEWS HIGHLIGHTS */}
       <NewsSection />

@@ -10,8 +10,8 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route element={<AppLayout />}>
-          <Route index element={<Navigate replace to="/dashboard" />} />
           <Route path="/dashboard" element={<Homepage />} />
+          <Route index element={<Navigate replace to="/dashboard" />} />
           <Route path="news" element={<News />} />
           <Route path="events" element={<Events />} />
           <Route path="*" element={<PageNotfound />} />

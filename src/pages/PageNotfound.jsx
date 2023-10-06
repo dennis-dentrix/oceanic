@@ -1,3 +1,3 @@
 export default function PageNotfound() {
-  return <div>PageNotfound</div>;
+  return <div className="h-screen mx-auto ">PageNotfound</div>;
 }

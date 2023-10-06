@@ -2,7 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 
 export default function Header() {
   return (
-    <header className="flex items-center justify-between px-8 py-4">
+    <header className="flex items-center justify-between px-8 py-4 w-max">
       <div className="skew-y-6">
         <Link to="/dashboard" className="text-blue tracking-wider text-xl ">
           Oceanic
