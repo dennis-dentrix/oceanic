@@ -7,7 +7,9 @@ export default function EventsSection() {
   return (
     <div className="px-8 py-4 ">
       <div className="flex justify-between items-center">
-        <h1>Upcoming events</h1>
+        <h1 className="text-black text-lg tracking-wide font-bold">
+          Upcoming events
+        </h1>
         <div
           className="flex items-center gap-2 cursor-pointer"
           onClick={() => navigate("/events")}
@@ -16,8 +18,7 @@ export default function EventsSection() {
           <ArrowRight />
         </div>
       </div>
-      <div className="flex gap-6 items-center flex-wrap py-4  ">
-        <EventCard />
+      <div className="flex gap-6 justify-center flex-wrap py-4  ">
         <EventCard />
         <EventCard />
         <EventCard />

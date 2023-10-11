@@ -2,7 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 
 export default function Header() {
   return (
-    <header className="flex items-center justify-between px-8 py-4 w-max">
+    <header className="flex items-center justify-between px-8 py-4 w-full border-b-2 border-grey ">
       <div className="skew-y-6">
         <Link to="/dashboard" className="text-blue tracking-wider text-xl ">
           Oceanic
@@ -17,6 +17,7 @@ export default function Header() {
             News
           </NavLink>
           <NavLink to="/events">Events</NavLink>
+          <NavLink to="/resources">Resources</NavLink>
         </nav>
         <div className="flex items-center gap-6">
           <button className="cursor-pointer px-3 py-1 border border-black text-blue rounded-md focus:ring-1 focus:ring-blue focus:border-none focus:scale-1 transition-all duration-300">

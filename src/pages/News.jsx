@@ -1,18 +1,100 @@
+import { Link } from "react-router-dom";
+import { news } from "../../data/news";
+import EventCard from "../features/Events/EventCard";
+
 export default function News() {
   return (
-    <div className="px-20 py-7  w-full sm:grid grid-cols-3 sm:place-content-center bg-red-500">
-      <div className="col-span-ful w-full sm:w-[1170px]  flex flex-col gap-8 bg-white py-6 px-4">
-        <img src="./img-1.jpeg" alt="" className="sm:w-[40vw] " />
+    <div className="">
+      <TopStories />
+      <OtherStories />
+      <Weather />
+    </div>
+  );
+}
 
-        <div className="flex flex-col justify-between  my-auto">
-          <h1 className="text-3xl">Taiwan hit by 340km/h tsunami.</h1>
-          <p>
-            Hundreds missing. Lorem ipsum dolor sit amet consectetur,
-            adipisicing elit.
-          </p>
-          <h3>
-            Source: <span>BBC</span>
-          </h3>
+function TopStories() {
+  return (
+    <div className="bg-white px-8 py-6">
+      <h1 className="font-bold text-xl pb-4">Top stories</h1>
+      <div className="flex flex-wrap gap-8 justify-center">
+        <NewsCard />
+        <NewsCard />
+        <NewsCard />
+        <NewsCard />
+        <NewsCard />
+        <NewsCard />
+        <NewsCard />
+        <NewsCard />
+      </div>
+    </div>
+  );
+}
+
+function NewsCard() {
+  return (
+    <div className="flex flex-col w-60 rounded-md">
+      <img src="./img-1.jpeg" alt="" />
+      <div className="bg-white px-2 rounded-b-md py-2 border border-black">
+        <Link className="font-bold text-lg tracking-wide">
+          Humans are now exploring under water minerals.
+        </Link>
+        <p className="text-black border-l pl-1 border-blue">DW news</p>
+      </div>
+    </div>
+  );
+}
+
+function OtherStories() {
+  return (
+    <div className="my-6 bg-grey px-8 py-6  rounded-md">
+      <h1 className="text-black font-bold">Other stories</h1>
+      <div className="flex flex-wrap gap-8 justify-center">
+        <EventCard />
+        <EventCard />
+        <EventCard />
+        <EventCard />
+        <EventCard />
+        <EventCard />
+        <EventCard />
+      </div>
+    </div>
+  );
+}
+
+function Weather() {
+  return (
+    <div className="px-8 py-6  rounded-t-md text-white border-b-2 border-white bg-black">
+      <div>
+        <h1>Nairobi</h1>
+        <div className="flex flex-wrap gap-8 px-3 py-2">
+          <span className="flex items-center gap-2">
+            <span>🌦️</span>
+            <div>
+              <p>Monday</p>
+              34<sup>o</sup>
+            </div>
+          </span>
+          <span className="flex items-center gap-2">
+            <span>🌦️</span>
+            <div>
+              <p>Monday</p>
+              34<sup>o</sup>
+            </div>
+          </span>
+          <span className="flex items-center gap-2">
+            <span>🌦️</span>
+            <div>
+              <p>Monday</p>
+              34<sup>o</sup>
+            </div>
+          </span>
+          <span className="flex items-center gap-2">
+            <span>🌦️</span>
+            <div>
+              <p>Monday</p>
+              34<sup>o</sup>
+            </div>
+          </span>
         </div>
       </div>
     </div>

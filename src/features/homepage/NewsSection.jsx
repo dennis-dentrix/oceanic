@@ -42,7 +42,7 @@ function NewsCard() {
   return (
     <>
       <img
-        src="./bg-image.jpg"
+        src="./img-6.jpeg"
         alt=""
         className="bg-contain h-full sm:w-full w-2/3 contrast-50"
       />
