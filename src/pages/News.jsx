@@ -30,7 +30,7 @@ function TopStories() {
   );
 }
 
-function NewsCard() {
+export function NewsCard() {
   return (
     <div className="flex flex-col w-60 rounded-md">
       <img src="./img-1.jpeg" alt="" />

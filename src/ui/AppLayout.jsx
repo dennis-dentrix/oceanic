@@ -6,7 +6,7 @@ export default function AppLayout() {
   return (
     <div className="relative">
       <Header />
-      <main className="h-100% flex flex-col flex-auto bg-grey">
+      <main className="h-full flex flex-col flex-auto bg-grey">
         <Outlet />
       </main>
       <Footer />

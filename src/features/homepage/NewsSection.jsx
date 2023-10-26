@@ -17,6 +17,7 @@ export default function NewsSection() {
           <ArrowRight />
         </div>
       </div>
+
       <div className="sm:grid flex flex-col grid-rows-2 grid-cols-[50%_23.8%_23.8%] gap-5 h-full">
         <div className=" row-start-1 row-end-3 relative">
           <NewsCard />
