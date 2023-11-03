@@ -4,7 +4,7 @@ import EventCard from "../features/Events/EventCard";
 
 export default function News() {
   return (
-    <div className="">
+    <div className="bg-red-400">
       <TopStories />
       <OtherStories />
       <Weather />
@@ -16,7 +16,7 @@ function TopStories() {
   return (
     <div className="bg-white px-8 py-6">
       <h1 className="font-bold text-xl pb-4">Top stories</h1>
-      <div className="flex flex-wrap gap-8">
+      <div className="grid sm:flex sm:flex-wrap place-items-center gap-8">
         <NewsCard />
         <NewsCard />
         <NewsCard />
@@ -32,7 +32,7 @@ function TopStories() {
 
 export function NewsCard() {
   return (
-    <div className="flex sm:flex-col w-42 sm:w-60 rounded-md">
+    <div className=" flex flex-col w-64 sm:w-60 rounded-md">
       <img src="./img-1.jpeg" alt="" />
       <div className="bg-white px-2 rounded-b-md py-2 border border-black">
         <Link className="font-bold text-lg tracking-wide">

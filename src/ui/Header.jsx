@@ -1,3 +1,4 @@
+import { Calendar2Event, House, Newspaper } from "react-bootstrap-icons";
 import { Link, NavLink } from "react-router-dom";
 
 const activeNav = "text-blue border-b border-black transition-all duration-200";
@@ -20,18 +21,27 @@ export default function Header() {
                 : "text-black px-2 py-1 ext-xl w-fit block after:block after:content-[''] after:absolute after:h-[3px] "
             }
           >
-            Home
+            <span className="sm:hidden">
+              <House />
+            </span>{" "}
+            <span className="hidden sm:block">Home</span>
           </NavLink>
           <NavLink
             to="/news"
             className={({ isActive }) => (isActive ? activeNav : "text-black")}
           >
-            News
+            <span className="sm:hidden">
+              <Newspaper />
+            </span>
+            <span className="hidden sm:block">News</span>
           </NavLink>
           <NavLink
             to="/events"
             className={({ isActive }) => (isActive ? activeNav : "text-black")}
           >
+            <span>
+              <Calendar2Event />
+            </span>
             Events
           </NavLink>
           <NavLink
