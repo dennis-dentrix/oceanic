@@ -8,7 +8,7 @@ export default function Header() {
     <header className="flex items-center justify-between  border-b-2 border-grey px-8 py-4 w-full">
       <div className="skew-y-6">
         <Link to="/dashboard" className="text-blue tracking-wider text-xl ">
-          Oceanic
+          Oceania
         </Link>
       </div>
       <div className="flex items center flex-grow-1 gap-12">
