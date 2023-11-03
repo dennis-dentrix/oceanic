@@ -1,8 +1,10 @@
 import { Link, NavLink } from "react-router-dom";
 
+const activeNav = "text-blue border-b border-black transition-all duration-200";
+
 export default function Header() {
   return (
-    <header className="flex items-center justify-between px-8 py-4 w-full border-b-2 border-grey ">
+    <header className="flex items-center justify-between  border-b-2 border-grey px-8 py-4 w-full">
       <div className="skew-y-6">
         <Link to="/dashboard" className="text-blue tracking-wider text-xl ">
           Oceanic
@@ -10,23 +12,44 @@ export default function Header() {
       </div>
       <div className="flex items center flex-grow-1 gap-12">
         <nav className="flex items-center gap-8">
-          <NavLink to="/dashboard" className="text-pink-600">
+          <NavLink
+            to="/dashboard"
+            className={({ isActive }) =>
+              isActive
+                ? activeNav
+                : "text-black px-2 py-1 ext-xl w-fit block after:block after:content-[''] after:absolute after:h-[3px] "
+            }
+          >
             Home
           </NavLink>
-          <NavLink to="/news" className="">
+          <NavLink
+            to="/news"
+            className={({ isActive }) => (isActive ? activeNav : "text-black")}
+          >
             News
           </NavLink>
-          <NavLink to="/events">Events</NavLink>
-          <NavLink to="/resources">Resources</NavLink>
+          <NavLink
+            to="/events"
+            className={({ isActive }) => (isActive ? activeNav : "text-black")}
+          >
+            Events
+          </NavLink>
+          <NavLink
+            to="/resources"
+            className={({ isActive }) => (isActive ? activeNav : "text-black")}
+          >
+            Resources
+          </NavLink>
+
+          <div className="sm:flex items-center gap-6 hidden">
+            <button className="cursor-pointer px-3 py-1 border border-black text-blue rounded-md focus:ring-1 focus:ring-blue focus:border-none focus:scale-1 transition-all duration-300">
+              Login
+            </button>
+            <button className="cursor-pointer px-3 py-1 border border-blue bg-blue text-grey rounded-md focus:ring-1 focus:border-none focus:ring-black ">
+              Register
+            </button>
+          </div>
         </nav>
-        <div className="flex items-center gap-6">
-          <button className="cursor-pointer px-3 py-1 border border-black text-blue rounded-md focus:ring-1 focus:ring-blue focus:border-none focus:scale-1 transition-all duration-300">
-            Login
-          </button>
-          <button className="cursor-pointer px-3 py-1 border border-blue bg-blue text-grey rounded-md focus:ring-1 focus:border-none focus:ring-black ">
-            Register
-          </button>
-        </div>
       </div>
     </header>
   );

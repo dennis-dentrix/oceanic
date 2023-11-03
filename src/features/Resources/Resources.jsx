@@ -1,132 +1,83 @@
-import { useState } from "react";
-import { Image, Pen, Play } from "react-bootstrap-icons";
-import { EventsContainer } from "../Events/EventsContainer";
-
 export default function Resources() {
   return (
-    <div className="w-full grid grid-cols-12">
-      {/* SEARCH FOR RESOURCE HERE */}
-      <div className="col-start-3 col-end-11 mt-2">
+    <div className="min-h-full w-full">
+      <section className="flex flex-col sm:flex-row sm:gap-8 sm:justify-around w-full px-3 py-4">
         <div>
-          <div className="w-full flex flex-col gap-2 border border-white px-2 py-1 rounded-md">
-            <input
-              type="text"
-              placeholder="Share about the environment"
-              className="w-full rounded-full px-2 py-1 focus:outline-none placeholder:text-grey text-black tracking-wide"
+          {/* LARGE CARD TO SHOW TOP STORY */}
+          <article className="w-full sm:w-[40vw]">
+            <img
+              src="./img-10.jpeg"
+              alt="Resource story one"
+              className="w-full mb-6 rounded-md shadow-lg shadow-black"
             />
-            <ul className="flex items-center justify-between">
-              <li className="flex items-center gap-2">
-                <Play />
-                <span>Video</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <Pen />
-                <span>Post</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <Image />
-                <span>Images</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
 
-      {/* RESOURCE DISPLAY GOES HERE */}
-      <div className="col-start-4 col-end-11 my-2">
-        <div>
-          <h4 className="font-bold text-lg">Latest Resources</h4>
-
-          <div className="flex items-center gap-6 flex-wrap mx-auto">
-            <ResourceCard />
-            <ResourceCard />
-            <ResourceCard />
-            <ResourceCard />
-            <ResourceCard />
-            <ResourceCard />
-            <ResourceCard />
-            <ResourceCard />
-            <ResourceCard />
-            <ResourceCard />
-            <ResourceCard />
-            <ResourceCard />
-            <ResourceCard />
-            <ResourceCard />
-            <ResourceCard />
-            <ResourceCard />
-          </div>
+            <div className="flex flex-col shadow-sm">
+              <div>
+                <p className="text-lg text-black tracking-wider">
+                  {" "}
+                  <span className="text-grey">By:</span> Edison Nderitu
+                </p>
+              </div>
+              <h1 className="text-blue text-2xl font-semibold">
+                The wastelands on the Kenyan beach
+              </h1>
+            </div>
+          </article>
         </div>
-      </div>
+
+        <div className="sm:h-screen sm:overflow-y-scroll scroll-m-1 scroll-smooth">
+          {/* MINI CARDS TO SHOW OTHER RESOURCES */}
+          <ResourceCard />
+          <ResourceCard />
+          <ResourceCard />
+        </div>
+      </section>
+
+      {/* <section>Section 2</section>
+
+      <section>Section 3</section> */}
     </div>
   );
 }
 
 function ResourceCard() {
   return (
-    <div className="w-52 text-black bg-white rounded-md">
-      <img src="./img-10.jpeg" alt="" />
-      <div className="my-3  px-2">
-        <div className="flex items-center gap-2">
-          {/* TITLE */}
-          <h3>The marine world</h3>
-          {/* TYPE: PDF/VIDEO */}
-          <p className="text-xs text-blue tracking-wide bg-grey rounded-full px-1 py-2 ">
-            PDF file
+    <div className="flex gap-6 ">
+      <article className="w-full sm:w-[20vw] px-2 py-4">
+        <img
+          src="./img-6.jpeg"
+          alt=""
+          className="w-full rounded-md shadow-sm shadow-black mb-4"
+        />
+
+        <div>
+          <p className="text-sm text-black tracking-wide">
+            <span className="text-grey">By: </span>
+            Alex mwendwa
           </p>
+          <h2 className="text-black font-bold text-lg tracking-wide">
+            Saving the last of mangroove
+          </h2>
         </div>
-        <p className="text-sm">
-          By: <span>John Doe</span>
-        </p>
-        <div className="flex items-center justify-between text-sm gap-2 my-3">
-          <button className="py-2 px-3 rounded-md bg-blue text-white">
-            Download
-          </button>
-          <p>2mb</p>
+      </article>
+
+      <article className="w-full sm:w-[20vw] px-2 py-4">
+        <img
+          src="./img-6.jpeg"
+          alt=""
+          className="w-full rounded-md shadow-sm shadow-black mb-4"
+        />
+
+        <div>
+          <p className="text-sm text-black tracking-wide">
+            <span className="text-grey">By: </span>
+            Alex mwendwa
+          </p>
+          <h2 className="text-black font-bold text-lg tracking-wide">
+            Saving the last of mangroove
+          </h2>
         </div>
-      </div>
+      </article>
     </div>
   );
-}
-
-{
-  /* <div className={`grid grid-cols-8 justify-center mx-auto`}>
-      <div
-        className={`px-3 py-2 cursor-pointer + ${
-          view ? "col-span-6 " : "col-span-4"
-        }`}
-        onClick={handleSetView}
-      >
-        <div>
-          <div className="w-full flex flex-col gap-2 border border-white px-2 py-1 rounded-md">
-            <input
-              type="text"
-              placeholder="Share about the environment"
-              className="w-full rounded-full px-2 py-1 focus:outline-none placeholder:text-grey text-black tracking-wide"
-            />
-            <ul className="flex items-center justify-between">
-              <li className="flex items-center gap-2">
-                <Play />
-                <span>Video</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <Pen />
-                <span>Post</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <Image />
-                <span>Images</span>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <EventsContainer />
-            <EventsContainer />
-            <EventsContainer />
-            <EventsContainer />
-          </div>
-        </div>
-      </div>
-      <div className="px-3 py-2">View</div>
-    </div> */
 }
