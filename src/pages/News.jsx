@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { news } from "../../data/news";
 import EventCard from "../features/Events/EventCard";
+import { useQuery } from "@tanstack/react-query";
+import { getAllNews } from "../services/news";
 
 export default function News() {
   return (
-    <div className="bg-red-400">
+    <div>
       <TopStories />
       <OtherStories />
       <Weather />
@@ -13,30 +15,30 @@ export default function News() {
 }
 
 function TopStories() {
+  const {data:news, isLoading} = useQuery({
+    queryKey: ["news"],
+    queryFn: getAllNews,
+  });
+  if(isLoading)return <p>Loader</p>
   return (
     <div className="bg-white px-8 py-6">
       <h1 className="font-bold text-xl pb-4">Top stories</h1>
       <div className="grid sm:flex sm:flex-wrap place-items-center gap-8">
-        <NewsCard />
-        <NewsCard />
-        <NewsCard />
-        <NewsCard />
-        <NewsCard />
-        <NewsCard />
-        <NewsCard />
-        <NewsCard />
+        {news.map(news => <NewsCard key={news.id}  news = {news}/>)}
+        
       </div>
     </div>
   );
 }
 
-export function NewsCard() {
+export function NewsCard({news}) {
+  
   return (
     <div className=" flex flex-col w-64 sm:w-60 rounded-md">
-      <img src="./img-1.jpeg" alt="" />
+      <img src={news.image} alt="" />
       <div className="bg-white px-2 rounded-b-md py-2 border border-black">
         <Link className="font-bold text-lg tracking-wide">
-          Humans are now exploring under water minerals.
+          {news.title}
         </Link>
         <p className="text-black border-l pl-1 border-blue">DW news</p>
       </div>

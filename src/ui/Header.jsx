@@ -39,7 +39,7 @@ export default function Header() {
             to="/events"
             className={({ isActive }) => (isActive ? activeNav : "text-black")}
           >
-            <span>
+            <span className="sm:hidden">
               <Calendar2Event />
             </span>
             Events
