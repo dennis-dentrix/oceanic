@@ -18,20 +18,17 @@ export default function NewsSection() {
         </div>
       </div>
 
-      <div className="sm:grid flex flex-col grid-rows-2 grid-cols-[50%_23.8%_23.8%] gap-5 h-full">
-        <div className=" row-start-1 row-end-3 relative">
-          <NewsCard />
+      {/* <div className="sm:grid flex flex-col grid-rows-2 grid-cols-[50%_23.8%_23.8%] gap-5 h-full"> */}
+      <div className="flex flex-col sm:flex-row justify-between gap-4">
+        <div className="hidden sm:flex flex-col gap-4 ">
+          <TopStoryCard />
+          <TopStoryCard />
         </div>
-        <div className=" col-start-2 col-end-3 relative">
+
+        <div className="flex flex-col gap-4 h-screen overflow-y-scroll">
           <NewsCard />
-        </div>
-        <div className="col-start-3 col-end-4 relative">
           <NewsCard />
-        </div>
-        <div className="relative col-start-2 col-end-3 row-start-2 row-end-3">
           <NewsCard />
-        </div>
-        <div className="relative col-start-3 col-end-4 row-start-2 row-end-3">
           <NewsCard />
         </div>
       </div>
@@ -39,24 +36,59 @@ export default function NewsSection() {
   );
 }
 
-function NewsCard() {
+function TopStoryCard() {
   return (
-    <>
+    // <div className="w-full sm:w-2/3 relative">
+    <div className="relative w-full">
       <img
         src="./img-6.jpeg"
         alt=""
-        className="bg-contain h-full sm:w-full w-2/3 contrast-50"
+        className="bg-contain w-full contrast-50"
       />
 
-      <div className="absolute bottom-4 pl-4 w-full">
-        <h1 className="text-white text-xl py-1 flex flex-col flex-wrap">
-          Marine wars
-        </h1>
+      <div className="absolute bottom-3 pl-4 w-full">
+        <h1 className="text-white py-1 flex flex-col flex-wrap">Marine wars</h1>
         <p className="text-grey pl-1 border-black border-l-2">
           Lorem ipsum dolor sit amet consectetur adipisicing elit.
         </p>
         <p className="text-sm text-black">source: BBC</p>
       </div>
-    </>
+    </div>
   );
 }
+
+function NewsCard() {
+  return (
+    // <div className="w-full sm:w-2/3 relative">
+    <div className="relative w-full sm:w-2/3">
+      <img
+        src="./img-6.jpeg"
+        alt=""
+        className="bg-contain w-full contrast-50"
+      />
+
+      <div className="absolute bottom-3 pl-4 w-full">
+        <h1 className="text-white py-1 flex flex-col flex-wrap">Marine wars</h1>
+        <p className="text-grey pl-1 border-black border-l-2">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        </p>
+        <p className="text-sm text-black">source: BBC</p>
+      </div>
+    </div>
+  );
+}
+// function NewsCard() {
+//   return (
+//     <div className="w-full flex ">
+//       <img src="./img-6.jpeg" alt="" className="bg-contain w-full" />
+
+//       <div className="pl-4 w-full">
+//         <h1 className="text-white py-1 flex flex-col flex-wrap">Marine wars</h1>
+//         <p className="text-grey pl-1 border-black border-l-2">
+//           Lorem ipsum dolor sit amet consectetur adipisicing elit.
+//         </p>
+//         <p className="text-sm text-black">source: BBC</p>
+//       </div>
+//     </div>
+//   );
+// }

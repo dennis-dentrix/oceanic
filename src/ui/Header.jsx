@@ -1,5 +1,12 @@
-import { Book, Calendar2Event, House, Newspaper, Person } from "react-bootstrap-icons";
+import {
+  Book,
+  Calendar2Event,
+  House,
+  Newspaper,
+  Person,
+} from "react-bootstrap-icons";
 import { Link, NavLink } from "react-router-dom";
+import HeaderDrawer from "./HeaderDrawer";
 
 const activeNav = "text-blue border-b border-black transition-all duration-200";
 
@@ -11,7 +18,7 @@ export default function Header() {
           Oceania
         </Link>
       </div>
-      <div className="flex items center flex-grow-1 gap-12">
+      <div className="hidden sm:flex items center flex-grow-1 gap-12 ">
         <nav className="flex items-center gap-8">
           <NavLink
             to="/dashboard"
@@ -42,9 +49,7 @@ export default function Header() {
             <span className="sm:hidden">
               <Calendar2Event />
             </span>
-            <span className="hidden sm:block">
-            Events
-            </span>
+            <span className="hidden sm:block">Events</span>
           </NavLink>
           <NavLink
             to="/resources"
@@ -53,12 +58,19 @@ export default function Header() {
             <span className="sm:hidden">
               <Book />
             </span>
-            <span className="hidden sm:block">
-            Resources
-            </span>
+            <span className="hidden sm:block">Resources</span>
           </NavLink>
 
-          <div className="sm:hidden "> 
+          {/* <NavLink
+            to="/post"
+            className={({ isActive }) => (isActive ? activeNav : "text-black")}
+          >
+            <span className="sm:hidden">
+              <Plus />
+            </span>
+            <span className="hidden sm:block">Post</span>
+          </NavLink> */}
+          <div className="sm:hidden ">
             <Person />
           </div>
 
@@ -71,6 +83,9 @@ export default function Header() {
             </button>
           </div>
         </nav>
+      </div>
+      <div className="block sm:hidden">
+        <HeaderDrawer />
       </div>
     </header>
   );

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 export default function EventsSection() {
   const navigate = useNavigate();
   return (
-    <div className="px-8 py-4 ">
+    <div className="px-2 py-4 ">
       <div className="flex justify-between items-center">
         <h1 className="text-black text-lg tracking-wide font-bold">
           Upcoming events
@@ -18,7 +18,7 @@ export default function EventsSection() {
           <ArrowRight />
         </div>
       </div>
-      <div className="flex gap-6 justify-center flex-wrap py-4  ">
+      <div className=" flex gap-4 sm:gap-6 flex-wrap justify-between md:justify-center py-8 ">
         <EventCard />
         <EventCard />
         <EventCard />

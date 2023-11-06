@@ -33,51 +33,89 @@ export default function Resources() {
         </div>
       </section>
 
-      {/* <section>Section 2</section>
+      {/* {/* <section>Section 2</section> */}
 
-      <section>Section 3</section> */}
+      <section>
+        <div className="w-1/2 px-2 py-4">
+          <video
+            controls
+            preload="none"
+            poster="./img-2.jpeg"
+            width="350"
+            aria-orientation="landscape"
+          >
+            {/* <source src="one-does-not-simply.webm" type="video/webm"/> */}
+            <source src="./vid-4.mp4" type="video/mp4" />
+          </video>
+          <div>
+            <p className="text-sm text-black tracking-wide">
+              <span className="text-grey">By: </span>
+              Alex mwendwa
+            </p>
+            <a href="/doc.pdf" target="_blank">
+              <h2 className="text-black font-bold text-lg tracking-wide">
+                Saving the last of mangroove
+              </h2>
+            </a>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
 
 function ResourceCard() {
+  // const { pageNumber, numPages } = useState();
   return (
     <div className="flex gap-6 ">
-      <article className="w-full sm:w-[20vw] px-2 py-4">
-        <img
-          src="./img-6.jpeg"
-          alt=""
-          className="w-full rounded-md shadow-sm shadow-black mb-4"
-        />
+      {ImageCard()}
 
-        <div>
-          <p className="text-sm text-black tracking-wide">
-            <span className="text-grey">By: </span>
-            Alex mwendwa
-          </p>
+      {DocumentCard()}
+    </div>
+  );
+}
+function DocumentCard() {
+  return (
+    <div className="w-full sm:w-[20vw] px-2 py-4">
+      <img
+        src="./img-6.jpeg"
+        alt=""
+        className="w-full rounded-md shadow-sm shadow-black mb-4"
+      />
+
+      <div>
+        <p className="text-sm text-black tracking-wide">
+          <span className="text-grey">By: </span>
+          Alex mwendwa
+        </p>
+        <a href="/doc.pdf" target="_blank">
           <h2 className="text-black font-bold text-lg tracking-wide">
             Saving the last of mangroove
           </h2>
-        </div>
-      </article>
+        </a>
+      </div>
+    </div>
+  );
+}
 
-      <article className="w-full sm:w-[20vw] px-2 py-4">
-        <img
-          src="./img-6.jpeg"
-          alt=""
-          className="w-full rounded-md shadow-sm shadow-black mb-4"
-        />
+function ImageCard() {
+  return (
+    <div className="w-full sm:w-[20vw] px-2 py-4">
+      <img
+        src="./img-6.jpeg"
+        alt=""
+        className="w-full rounded-md shadow-sm shadow-black mb-4"
+      />
 
-        <div>
-          <p className="text-sm text-black tracking-wide">
-            <span className="text-grey">By: </span>
-            Alex mwendwa
-          </p>
-          <h2 className="text-black font-bold text-lg tracking-wide">
-            Saving the last of mangroove
-          </h2>
-        </div>
-      </article>
+      <div>
+        <p className="text-sm text-black tracking-wide">
+          <span className="text-grey">By: </span>
+          Alex mwendwa
+        </p>
+        <h2 className="text-black font-bold text-lg tracking-wide">
+          Saving the last of mangroove
+        </h2>
+      </div>
     </div>
   );
 }
