@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 
 import Header from "./Header";
 import Footer from "./Footer";
+import { Weather } from "./Weather";
 export default function AppLayout() {
   return (
     <div className="">
@@ -11,6 +12,8 @@ export default function AppLayout() {
       <main className="px-8 py-4 w-full mt-4">
         <Outlet />
       </main>
+      <Weather />
+
       <Footer />
     </div>
   );

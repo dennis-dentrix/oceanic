@@ -1,6 +1,6 @@
 import EventsSection from "../features/homepage/EventsSection";
 import { Landing } from "../features/homepage/Landing";
-import NewsSection from "../features/homepage/NewsSection";
+import NewsSection from "../features/news/NewsSection";
 
 export default function Homepage() {
   return (

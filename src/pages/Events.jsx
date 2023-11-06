@@ -1,7 +1,7 @@
 import { useState } from "react";
 import EventCard from "../features/Events/EventCard";
 import EventsDrawer from "../features/Events/EventsDrawer";
-import { PostForm } from "../features/Events/PostForm";
+import { PostForm } from "../ui/PostForm";
 import { BookedContainer } from "./BookedContainer";
 
 export default function Events() {
