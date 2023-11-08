@@ -1,7 +1,5 @@
 /* eslint-disable react/prop-types */
 
-import { PostForm } from "../ui/PostForm";
-
 import { TopStories } from "../features/news/TopStories";
 import { NewsContainer } from "../features/news/NewsContainer";
 import Postnews from "./../features/news/Postnews";

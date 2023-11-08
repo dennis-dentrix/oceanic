@@ -14,11 +14,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 
 export default function Events() {
   const [showBooked, setBooked] = useState(false);
-  const [showForm, setShowform] = useState(false);
 
-  function handlePostForm() {
-    setShowform(!showForm);
-  }
   return (
     <div className="md:grid md:grid-cols-[auto_1fr] gap-6">
       <div className="col-start-1 col-end-2">
