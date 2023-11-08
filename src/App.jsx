@@ -6,7 +6,7 @@ import AppLayout from "./ui/AppLayout";
 import PageNotfound from "./pages/PageNotfound";
 import Resources from "./features/Resources/Resources";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import Post from "./pages/Post/";
+import PostEvent from "./pages/PostEvent";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -27,8 +27,7 @@ export default function App() {
             <Route path="news" element={<News />} />
             <Route path="events" element={<Events />} />
             <Route path="resources" element={<Resources />} />
-            <Route path="post" element={<Post />} />
-
+            <Route path="newevent" element={<PostEvent />} />
             <Route path="*" element={<PageNotfound />} />
           </Route>
         </Routes>

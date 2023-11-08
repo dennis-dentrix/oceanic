@@ -9,7 +9,7 @@ import {
   Link,
 } from "react-bootstrap-icons";
 
-export function PostForm({ placeholder }) {
+export function PostForm({ placeholder, onClick }) {
   const [moreButtons, showMore] = useState(false);
   return (
     // <div className="bg-white px-4 py-2 my-2">
@@ -21,6 +21,7 @@ export function PostForm({ placeholder }) {
             type="text"
             placeholder={placeholder}
             className="bg-transparent px-4 py-2 text-black focus:outline-none w-full"
+            onFocus={onClick}
           />
         </form>
         <div className="px-1 py-1 shadow-md rounded-full ">

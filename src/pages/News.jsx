@@ -4,11 +4,13 @@ import { PostForm } from "../ui/PostForm";
 
 import { TopStories } from "../features/news/TopStories";
 import { NewsContainer } from "../features/news/NewsContainer";
+import Postnews from "./../features/news/Postnews";
 
 export default function News() {
   return (
     <div>
-      <PostForm placeholder="Create story" />
+      <Postnews />
+
       <TopStories />
       <OtherStories />
     </div>
