@@ -8,6 +8,11 @@ import Resources from "./features/Resources/Resources";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import PostEvent from "./pages/PostEvent";
 
+// ADMIN IMPORTS
+import Dashboard from "./admin/Dashboard";
+import Overview from "./admin/Overview";
+import Courses from "./admin/Courses";
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -24,11 +29,19 @@ export default function App() {
           <Route element={<AppLayout />}>
             <Route path="/dashboard" element={<Homepage />} />
             <Route index element={<Navigate replace to="/dashboard" />} />
-            <Route path="news" element={<News />} />
             <Route path="events" element={<Events />} />
             <Route path="resources" element={<Resources />} />
             <Route path="newevent" element={<PostEvent />} />
             <Route path="*" element={<PageNotfound />} />
+          </Route>
+
+          {/* ADMIN PAGE ROUTES */}
+          <Route element={<Dashboard />}>
+            {/* <Route path="admin" element={<Dashboard />} /> */}
+
+            <Route index element={<Navigate replace to="/overview" />} />
+            <Route path="overview" element={<Overview />} />
+            <Route path="courses" element={<Courses />} />
           </Route>
         </Routes>
       </BrowserRouter>
