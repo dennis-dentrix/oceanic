@@ -5,12 +5,14 @@ import {
   Newspaper,
   Person,
 } from "react-bootstrap-icons";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import HeaderDrawer from "./HeaderDrawer";
+import supabase, { getAdmin } from "../services/supabase";
 
 const activeNav = "text-blue border-b border-black transition-all duration-200";
 
 export default function Header() {
+  const navigate = useNavigate();
   return (
     <header className="flex items-center justify-between  border-b-2 border-grey px-8 py-4 w-full">
       <div className="skew-y-6">
@@ -34,13 +36,13 @@ export default function Header() {
             <span className="hidden sm:block">Home</span>
           </NavLink>
           <NavLink
-            to="/news"
+            to="/courses"
             className={({ isActive }) => (isActive ? activeNav : "text-black")}
           >
             <span className="sm:hidden">
-              <Newspaper />
+              <Book />
             </span>
-            <span className="hidden sm:block">News</span>
+            <span className="hidden sm:block">Courses</span>
           </NavLink>
           <NavLink
             to="/events"
@@ -75,11 +77,17 @@ export default function Header() {
           </div>
 
           <div className="sm:flex items-center gap-6 hidden">
-            <button className="cursor-pointer px-3 py-1 border border-black text-blue rounded-md focus:ring-1 focus:ring-blue focus:border-none focus:scale-1 transition-all duration-300">
-              Login
+            <button
+              onClick={() => supabase.auth.signOut()}
+              className="cursor-pointer px-3 py-1 border border-black text-blue rounded-md focus:ring-1 focus:ring-blue focus:border-none focus:scale-1 transition-all duration-300"
+            >
+              Logout
             </button>
-            <button className="cursor-pointer px-3 py-1 border border-blue bg-blue text-grey rounded-md focus:ring-1 focus:border-none focus:ring-black ">
-              Register
+            <button
+              onClick={() => navigate("/admin")}
+              className="cursor-pointer px-3 py-1 border border-blue bg-blue text-grey rounded-md focus:ring-1 focus:border-none focus:ring-black "
+            >
+              Admin
             </button>
           </div>
         </nav>
