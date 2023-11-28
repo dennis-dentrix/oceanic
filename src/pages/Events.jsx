@@ -1,6 +1,6 @@
 import { useState } from "react";
 import EventCard from "../features/Events/EventCard";
-import EventsDrawer from "../features/Events/EventsDrawer";
+import EventsDrawer from "../admin/EventsDrawer";
 import { BookedContainer } from "./BookedContainer";
 
 import { Search } from "react-bootstrap-icons";

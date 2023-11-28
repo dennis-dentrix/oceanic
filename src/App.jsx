@@ -13,6 +13,7 @@ import Overview from "./admin/Overview";
 import EventsMngmt from "./admin/EventsMngmt";
 import Course from "./features/learning/Course";
 import ClassMngmt from "./admin/Courses";
+import Exam from "./features/learning/Exam";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -31,6 +32,8 @@ export default function App() {
             <Route path="/dashboard" element={<Homepage />} />
             <Route index element={<Navigate replace to="/dashboard" />} />
             <Route path="courses" element={<Course />} />
+            <Route path="exam" element={<Exam />} />
+
             <Route path="events" element={<Events />} />
             <Route path="resources" element={<Resources />} />
             <Route path="newevent" element={<PostEvent />} />

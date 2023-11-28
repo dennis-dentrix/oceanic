@@ -1,11 +1,14 @@
 import { DataGrid } from "@mui/x-data-grid";
-import EventsDrawer from "../features/Events/EventsDrawer";
+import EventsDrawer from "./EventsDrawer";
 import { FormDialog } from "./FormDialog";
+import { useQuery } from "@tanstack/react-query";
+import { getEvents } from "../services/apiEvents";
+import Spinner from "../ui/Spin";
 
 const columns = [
   // { field: "id", headerName: "ID", width: 70 },
   { field: "title", headerName: "Event", width: 220, sortable: true },
-  { field: "organiser", headerName: "Organiser", width: 150, sortable: true },
+  { field: "organizer", headerName: "Organizer", width: 150, sortable: true },
   {
     field: "venue",
     headerName: "Venue",
@@ -29,81 +32,6 @@ const columns = [
   },
 ];
 
-const rows = [
-  {
-    id: 1,
-    title: "Blue economy conference",
-    organiser: "Jon",
-    venue: 2,
-    startDate: "1 / 2 / 2020",
-    endDate: "2 / 3 / 2020",
-  },
-  {
-    id: 2,
-    title: "Blue economy conference",
-    organiser: "Cersei",
-    venue: 1,
-    startDate: "1 / 2 / 2020",
-    endDate: "2 / 3 / 2020",
-  },
-  {
-    id: 3,
-    title: "Blue economy conference",
-    organiser: "Jaime",
-    venue: 2,
-    startDate: "1 / 2 / 2020",
-    endDate: "2 / 3 / 2020",
-  },
-  {
-    id: 4,
-    title: "Blue economy conference",
-    organiser: "Arya",
-    venue: null,
-    startDate: "1 / 2 / 2020",
-    endDate: "2 / 3 / 2020",
-  },
-  {
-    id: 5,
-    title: "Blue economy conference",
-    organiser: "Daenerys",
-    venue: 2,
-    startDate: "1 / 2 / 2020",
-    endDate: "2 / 3 / 2020",
-  },
-  {
-    id: 6,
-    title: "Blue economy conference",
-    organiser: null,
-    venue: 1,
-    startDate: "1 / 2 / 2020",
-    endDate: "2 / 3 / 2020",
-  },
-  {
-    id: 7,
-    title: "Blue economy conferenced",
-    organiser: "Ferrara",
-    venue: 1,
-    startDate: "1 / 2 / 2020",
-    endDate: "2 / 3 / 2020",
-  },
-  {
-    id: 8,
-    title: "Blue economy conference",
-    organiser: "Rossini",
-    venue: 2,
-    startDate: "1 / 2 / 2020",
-    endDate: "2 / 3 / 2020",
-  },
-  {
-    id: 9,
-    title: "Blue economy conference",
-    organiser: "Harvey",
-    venue: null,
-    startDate: 1 / 2 / 2020,
-    endDate: 2 / 3 / 2020,
-  },
-];
-
 export default function EventsMngmt() {
   return (
     <div>
@@ -118,10 +46,33 @@ export default function EventsMngmt() {
 }
 
 function EventsTable() {
+  const {
+    data: events,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["events"],
+    queryFn: getEvents,
+  });
+  let row = [];
+
+  if (isLoading) return <Spinner />;
+  events.map((event) => {
+    const evn = {
+      id: event.id,
+      title: event.title,
+      organizer: event.organizer,
+      venue: event.location,
+      startDate: event.startDate,
+      endDate: event.endDate,
+    };
+    return row.push(evn);
+  });
+  console.log(row);
   return (
     <div style={{ height: 400, width: "100%" }}>
       <DataGrid
-        rows={rows}
+        rows={row}
         columns={columns}
         initialState={{
           pagination: {

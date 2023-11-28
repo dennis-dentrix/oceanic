@@ -4,7 +4,7 @@ import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import { BookedContainer } from "../../pages/BookedContainer";
+import { BookedContainer } from "../pages/BookedContainer";
 
 export default function EventsDrawer() {
   const [state, setState] = React.useState({
