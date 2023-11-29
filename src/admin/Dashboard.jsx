@@ -10,7 +10,6 @@ export default function Dashboard() {
   const [session, setSession] = useState(null);
 
   useEffect(() => {
-    supabase.auth.admin;
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
     });

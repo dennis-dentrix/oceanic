@@ -9,7 +9,7 @@ export default function Navigation() {
           to="/dashboard"
           className="text-blue tracking-wider text-2xl px-3 py-4 "
         >
-          Oceanic
+          Oceania
         </Link>
 
         <nav className="my-4 px-6">

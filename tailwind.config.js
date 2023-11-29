@@ -11,6 +11,7 @@ export default {
         green: "#2afbcc",
         grey: "#edeae7",
         blue: "#0090c6",
+        blush: "#E55381",
       },
     },
   },

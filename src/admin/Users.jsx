@@ -1,121 +1,67 @@
-import { DataGrid } from "@mui/x-data-grid";
+/* eslint-disable react/prop-types */
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { deleteUser } from "../services/userApi";
+import Spinner from "../ui/Spin";
+import toast from "react-hot-toast";
 
-const columns = [
-  { field: "id", headerName: "ID", width: 70 },
-  { field: "firstName", headerName: "First name", width: 130 },
-  { field: "lastName", headerName: "Last name", width: 130 },
-  {
-    field: "enrolled",
-    headerName: "Enrolled",
-    type: "number",
-    width: 90,
-  },
-  {
-    field: "completed",
-    headerName: "Completed courses",
-    type: "number",
-    width: 130,
-  },
+export default function Users({ users, isFetching, error }) {
+  const queryClient = useQueryClient();
+  const { mutate, isLoading: isDeleting } = useMutation({
+    mutationFn: deleteUser,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["users"],
+      });
+      toast.success("User deleted");
+    },
+    onError: (err) => toast.error(err.message),
+  });
 
-  {
-    field: "events",
-    headerName: "Events",
-    description: "This column lists number of events user has booked.",
-    sortable: true,
-    width: 90,
-    type: "number",
-  },
-];
+  if (isFetching) return <Spinner />;
+  if (error) return <div>Error</div>;
 
-const rows = [
-  {
-    id: 1,
-    lastName: "Snow",
-    firstName: "Jon",
-    enrolled: 2,
-    completed: 1,
-    events: 10,
-  },
-  {
-    id: 2,
-    lastName: "Lannister",
-    firstName: "Cersei",
-    enrolled: 1,
-    completed: 1,
-    events: 10,
-  },
-  {
-    id: 3,
-    lastName: "Lannister",
-    firstName: "Jaime",
-    enrolled: 2,
-    completed: 1,
-    events: 10,
-  },
-  {
-    id: 4,
-    lastName: "Stark",
-    firstName: "Arya",
-    enrolled: null,
-    completed: 1,
-    events: 10,
-  },
-  {
-    id: 5,
-    lastName: "Targaryen",
-    firstName: "Daenerys",
-    enrolled: 2,
-    completed: 1,
-    events: 10,
-  },
-  {
-    id: 6,
-    lastName: "Melisandre",
-    firstName: null,
-    enrolled: 1,
-    completed: 1,
-    events: 10,
-  },
-  {
-    id: 7,
-    lastName: "Clifford",
-    firstName: "Ferrara",
-    enrolled: 1,
-    completed: 1,
-    events: 10,
-  },
-  {
-    id: 8,
-    lastName: "Frances",
-    firstName: "Rossini",
-    enrolled: 2,
-    completed: 1,
-    events: 10,
-  },
-  {
-    id: 9,
-    lastName: "Roxie",
-    firstName: "Harvey",
-    enrolled: null,
-    completed: 1,
-    events: 10,
-  },
-];
-
-export default function Users() {
   return (
-    <div style={{ height: 400, width: "100%" }}>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: { page: 0, pageSize: 5 },
-          },
-        }}
-        pageSizeOptions={[5, 10]}
-        checkboxSelection
-      />
-    </div>
+    <table className="min-w-full divide-y divide-gray-200">
+      <thead className="bg-gray-50">
+        <tr>
+          <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            First Name
+          </th>
+          <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Last Name
+          </th>
+          <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Courses Enrolled
+          </th>
+          <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Events Booked
+          </th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody className="bg-white divide-y divide-gray-200">
+        {users.map((user) => (
+          <tr key={user.id}>
+            <td className="px-4 py-2 whitespace-nowrap">{user.firstName}</td>
+            <td className="px-4 py-2 whitespace-nowrap">{user.lastName}</td>
+            <td className="px-4 py-2 whitespace-nowrap">
+              {user.numcourses !== null ? user.numcourses : 0}
+            </td>
+            <td className="px-4 py-2 whitespace-nowrap">
+              {user.eventsBooked !== null ? user.eventsBooked : 0}
+            </td>
+
+            <button
+              className="px-2 py-1 m-2 text-grey rounded-md bg-blush"
+              onClick={() => mutate(user.id)}
+              disabled={isDeleting}
+            >
+              Delete
+            </button>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   );
 }

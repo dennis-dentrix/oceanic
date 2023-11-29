@@ -16,6 +16,7 @@ import ClassMngmt from "./admin/Courses";
 import Exam from "./features/learning/Exam";
 import Login from "./user/Login";
 import ExamDrawer from "./features/learning/ExamDrawer";
+import { Toaster } from "react-hot-toast";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -54,6 +55,26 @@ export default function App() {
             <Route path="eventsmanagement" element={<EventsMngmt />} />
           </Route>
         </Routes>
+        <Toaster
+          position="bottom-left"
+          gutter={12}
+          containerStyle={{ margin: "8px" }}
+          toastOptions={{
+            success: {
+              duration: 3000,
+            },
+            error: {
+              duration: 3000,
+            },
+            style: {
+              fontSize: "16px",
+              maxWidth: "500px",
+              padding: "16px 12px",
+              backgroundColor: "#E55381",
+              color: "grey",
+            },
+          }}
+        />
       </BrowserRouter>
     </QueryClientProvider>
   );

@@ -1,36 +1,9 @@
-import { DataGrid } from "@mui/x-data-grid";
 import EventsDrawer from "./EventsDrawer";
 import { FormDialog } from "./FormDialog";
-import { useQuery } from "@tanstack/react-query";
-import { getEvents } from "../services/apiEvents";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { deleteEvent, getEvents } from "../services/apiEvents";
 import Spinner from "../ui/Spin";
-
-const columns = [
-  // { field: "id", headerName: "ID", width: 70 },
-  { field: "title", headerName: "Event", width: 220, sortable: true },
-  { field: "organizer", headerName: "Organizer", width: 150, sortable: true },
-  {
-    field: "venue",
-    headerName: "Venue",
-    width: 130,
-  },
-  {
-    field: "startDate",
-    headerName: "Start Date",
-    type: "text",
-    sortable: true,
-    width: 100,
-  },
-
-  {
-    field: "endDate",
-    headerName: "End Date",
-    description: "This column lists number of events user has booked.",
-    sortable: true,
-    width: 100,
-    type: "text",
-  },
-];
+import toast from "react-hot-toast";
 
 export default function EventsMngmt() {
   return (
@@ -48,40 +21,73 @@ export default function EventsMngmt() {
 function EventsTable() {
   const {
     data: events,
-    isLoading,
+    isLoading: isFetching,
     error,
   } = useQuery({
     queryKey: ["events"],
     queryFn: getEvents,
   });
-  let row = [];
 
-  if (isLoading) return <Spinner />;
-  events.map((event) => {
-    const evn = {
-      id: event.id,
-      title: event.title,
-      organizer: event.organizer,
-      venue: event.location,
-      startDate: event.startDate,
-      endDate: event.endDate,
-    };
-    return row.push(evn);
+  const queryClient = useQueryClient();
+  const { isLoading: isDeleting, mutate } = useMutation({
+    mutationFn: deleteEvent,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["events"],
+      });
+      toast.success("Event Deleted");
+    },
+    onError: (err) => {
+      toast.error(err.message);
+    },
   });
-  console.log(row);
+
+  if (isFetching) return <Spinner />;
+  if (error) <div>error</div>;
   return (
-    <div style={{ height: 400, width: "100%" }}>
-      <DataGrid
-        rows={row}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: { page: 0, pageSize: 5 },
-          },
-        }}
-        pageSizeOptions={[5, 10]}
-        checkboxSelection
-      />
-    </div>
+    <table className="min-w-full divide-y divide-gray-200">
+      <thead className="bg-gray-50">
+        <tr>
+          <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Event Name
+          </th>
+          <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Organizer
+          </th>
+          <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Location
+          </th>
+          <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Start Date
+          </th>
+          <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            End Date
+          </th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody className="bg-white divide-y divide-gray-200">
+        {events.map((event) => (
+          <tr key={event.id}>
+            <td className="px-4 py-2 whitespace-nowrap">{event.title}</td>
+            <td className="px-4 py-2 whitespace-nowrap">{event.organizer}</td>
+            <td className="px-4 py-2 whitespace-nowrap">{event.location}</td>
+            <td className="px-4 py-2 whitespace-nowrap">{event.startDate}</td>
+            <td className="px-4 py-2 whitespace-nowrap">{event.endDate}</td>
+
+            <td>
+              <button
+                className="px-2 py-1 m-2 text-grey rounded-md bg-blush"
+                onClick={() => mutate(event.id)}
+                disabled={isDeleting}
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   );
 }

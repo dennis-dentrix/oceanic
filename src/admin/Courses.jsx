@@ -1,55 +1,52 @@
+/* eslint-disable react/prop-types */
 import { DataGrid } from "@mui/x-data-grid";
 import { useQuery } from "@tanstack/react-query";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { getCourses } from "../services/courseApi";
 import Spinner from "../ui/Spin";
+import { useState } from "react";
 
 export default function ClassMngmt() {
-  const navigate = useNavigate();
-  const { data: courses, isLoading } = useQuery({
+  const {
+    data: courses,
+    isLoading: loadCourse,
+    error,
+  } = useQuery({
     queryKey: ["courses"],
     queryFn: getCourses,
   });
 
-  if (isLoading) return <Spinner />;
+  if (loadCourse) return <Spinner />;
+  if (error) return <p>Error</p>;
 
   return (
     <div className="space-y-6">
-      {courses.map((course) => console.log(course))}
-      <CoursesCard />
+      <div className="flex gap-6 items-stretch h-max">
+        {courses.map((course) => (
+          <CoursesCard course={course} key={course.id} />
+        ))}
+      </div>
 
       <div className="h-full overflow-y-scroll">
-        <ClassView />
+        {courses.map((course) => (
+          <ClassView course={course} />
+        ))}
       </div>
     </div>
   );
 }
 
-function CoursesCard() {
+function CoursesCard({ course }) {
+  console.log(course);
   return (
-    <div className="flex gap-10 ">
-      <NavLink className="bg-black text-white rounded-md px-4 py-6 w-48 flex flex-col justify-around gap-5">
+    <div>
+      <NavLink className="bg-black text-white rounded-md px-4 py-6 w-48 h-[15rem] flex flex-col justify-around gap-5">
         <div className="flex flex-col items-end gap-3">
-          <h1>1: The Most Endangered Species in the Sea</h1>
-          <p className="text-sm">10 Minutes</p>
-          {/* <p className="text-sm">0/100 points</p> */}
+          <h1>{course.title}</h1>
+          {/* <p className="text-sm">10 Minutes</p>
+          <p className="text-sm">0/100 points</p> */}
         </div>
-        {/* <button className="bg-blue py-2 rounded-full">View</button> */}
-      </NavLink>
-
-      <NavLink className="bg-black text-white rounded-md px-4 py-6 w-48 flex flex-col justify-around gap-5">
-        <div className="flex flex-col items-end gap-3">
-          <h1>2: Challenges and Conservation Efforts</h1>
-          <p className="text-sm">10 Minutes</p>
-          {/* <p className="text-sm">0/100 points</p> */}
-        </div>
-        {/* <button className="bg-blue py-2 rounded-full">View</button> */}
-        {/* <button
-            className="bg-green text-black font-medium py-2 rounded-full"
-            onClick={() => navigate("/courseView")}
-          >
-            View
-          </button> */}
+        <button className="bg-blue py-2 rounded-full">View</button>
       </NavLink>
     </div>
   );
@@ -128,7 +125,7 @@ function ClassView() {
   return (
     <div>
       <div className="space-y-4 my-3">
-        {/* <h1 className=" font-bold text-lg">Endanger Species</h1> */}
+        <h1 className=" font-bold text-lg">Endanger Species</h1>
         <p className="font-light ">Enrolled students</p>
       </div>
 
