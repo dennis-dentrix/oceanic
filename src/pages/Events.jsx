@@ -31,15 +31,16 @@ export default function Events() {
             </div>
           </div>
           <div className="flex gap-3 sm:gap-4 flex-wrap justify-between md:justify-normal ">
-            <EventCard />
-            <EventCard />
-            <EventCard />
-            <EventCard />
+            <EventCard title="Tree Planting Day" />
+            <EventCard title="Beach Cleanup" d />
+            <EventCard title="Environmental Film Screenings" />
+            <EventCard title="Earth Day Celebrations" />
+            <EventCard title="Clean Energy Expos" />
           </div>
         </div>
       </div>
       {/* <div className="sm:w-full  h-screen  my-2  flex flex-col items-center bg-white w-full overflow-y-scroll scrollbar px-2"> */}
-      <div className="hidden md:block">
+      <div className="hidden md:block col-start-2 col-end-3 w-60">
         <BookedContainer />
       </div>
     </div>

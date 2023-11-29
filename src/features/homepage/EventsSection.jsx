@@ -19,11 +19,17 @@ export default function EventsSection() {
         </div>
       </div>
       <div className=" flex gap-4 sm:gap-6 flex-wrap justify-between md:justify-center py-8 ">
-        <EventCard />
-        <EventCard />
-        <EventCard />
-        <EventCard />
-        <EventCard />
+        <EventCard
+          title="Tree Planting Day"
+          description="community tree-planting event to increase green cover and combat deforestation."
+        />
+        <EventCard
+          title="Beach Cleanup"
+          description=" clean up beaches and coastal areas to protect marine life and ecosystems."
+        />
+        <EventCard title="Environmental Film Screenings" />
+        <EventCard title="Earth Day Celebrations" />
+        <EventCard title="Clean Energy Expos" />
       </div>
     </div>
   );

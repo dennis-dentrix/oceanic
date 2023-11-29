@@ -14,6 +14,8 @@ import EventsMngmt from "./admin/EventsMngmt";
 import Course from "./features/learning/Course";
 import ClassMngmt from "./admin/Courses";
 import Exam from "./features/learning/Exam";
+import Login from "./user/Login";
+import ExamDrawer from "./features/learning/ExamDrawer";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -28,11 +30,13 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Routes>
+          <Route path="login" element={<Login />} />
           <Route element={<AppLayout />}>
             <Route path="/dashboard" element={<Homepage />} />
             <Route index element={<Navigate replace to="/dashboard" />} />
             <Route path="courses" element={<Course />} />
             <Route path="exam" element={<Exam />} />
+            <Route path="courseView" element={<ExamDrawer />} />
 
             <Route path="events" element={<Events />} />
             <Route path="resources" element={<Resources />} />

@@ -7,8 +7,6 @@ export function BookedContainer() {
       <BookedEvents />
       <BookedEvents />
       <BookedEvents />
-      <BookedEvents />
-      <BookedEvents />
     </div>
   );
 }

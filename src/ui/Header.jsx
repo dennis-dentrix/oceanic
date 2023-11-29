@@ -13,6 +13,10 @@ const activeNav = "text-blue border-b border-black transition-all duration-200";
 
 export default function Header() {
   const navigate = useNavigate();
+  function handleAdmin() {
+    supabase.auth.signOut();
+    navigate("/login");
+  }
   return (
     <header className="flex items-center justify-between  border-b-2 border-grey px-8 py-4 w-full">
       <div className="skew-y-6">
@@ -85,6 +89,7 @@ export default function Header() {
             </button>
             <button
               onClick={() => navigate("/admin")}
+              // onClick={handleAdmin}
               className="cursor-pointer px-3 py-1 border border-blue bg-blue text-grey rounded-md focus:ring-1 focus:border-none focus:ring-black "
             >
               Admin

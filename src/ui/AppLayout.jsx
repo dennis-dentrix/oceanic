@@ -38,7 +38,7 @@ export default function AppLayout() {
           <Auth
             supabaseClient={supabase}
             appearance={{ theme: ThemeSupa }}
-            providers={["google", "facebook", "github"]}
+            providers={["google"]}
           />
         </div>
       </div>

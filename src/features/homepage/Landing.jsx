@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router-dom";
+
 export function Landing() {
+  const navigate = useNavigate();
   return (
     // <div className="relative w-full h-full ">
     //   <img src="./bg-image.jpg" alt="" className="bg-contain w-full" />
@@ -32,7 +35,10 @@ export function Landing() {
           <p className="text-lg text-black font-bold">source: BBC</p>
 
           <div>
-            <button className="px-3 py-2 text-white bg-blue rounded-md">
+            <button
+              className="px-3 py-2 text-white bg-blue rounded-md"
+              onClick={() => navigate("/resources")}
+            >
               Read more
             </button>
           </div>

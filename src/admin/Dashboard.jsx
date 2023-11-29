@@ -37,7 +37,7 @@ export default function Dashboard() {
           <Auth
             supabaseClient={supabase}
             appearance={{ theme: ThemeSupa }}
-            providers={["google", "facebook", "github"]}
+            providers={["google"]}
           />
         </div>
       </div>
