@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 export default function EventCard({ title, description }) {
   return (
     <div className="w-[18rem] sm:w-[15rem] bg-white shadow-md  rounded-md flex flex-col gap-4">

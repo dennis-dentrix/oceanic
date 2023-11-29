@@ -29,14 +29,48 @@ export default function Course() {
             <iframe
               width="560"
               height="315"
-              src="https://www.youtube.com/watch?v=-91E5NRlpvM"
+              src={`https://www.youtube.com/embed/rM6txLtoaoc`}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              title="Embedded youtube"
             />
           </div>
+
           <div>
             <iframe
               width="560"
               height="315"
-              src="https://www.youtube.com/watch?v=-91E5NRlpvM"
+              src={`https://www.youtube.com/embed/ttcJMNlKif4`}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              title="Embedded youtube"
+            />
+          </div>
+        </div>
+        <div className="flex flex-col md:flex-row gap-6">
+          <div className="">
+            <iframe
+              width="560"
+              height="315"
+              src={`https://www.youtube.com/embed/nwyqp8KFGiI`}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              title="Embedded youtube"
+            />
+          </div>
+
+          <div>
+            <iframe
+              width="560"
+              height="315"
+              src={`https://www.youtube.com/embed/EJW_Rkn5xZM`}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              title="Embedded youtube"
             />
           </div>
         </div>
