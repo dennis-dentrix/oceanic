@@ -4,8 +4,10 @@ import { useQuery } from "@tanstack/react-query";
 import { getUsers } from "../services/userApi";
 import Spinner from "../ui/Spin";
 import { getEvents } from "../services/apiEvents";
+import { useNavigate } from "react-router-dom";
 
 export default function Overview() {
+  const navigate = useNavigate();
   // FETCHING USER DATA
   const {
     data: users,
@@ -36,7 +38,10 @@ export default function Overview() {
               key={user.id}
               className="px-3 py-2 bg-black text-white rounded-lg w-[8rem] h-24 flex flex-col justify-around"
             >
-              <div className="flex items-center gap-2">
+              <div
+                className="flex items-center gap-2"
+                onClick={() => navigate("/admin")}
+              >
                 <Person />
                 <h2>Users</h2>
               </div>
@@ -45,7 +50,10 @@ export default function Overview() {
           );
         })}
 
-        <div className="px-3 py-2 bg-black text-white rounded-lg w-[8rem] h-24 flex flex-col justify-around">
+        <div
+          onClick={() => navigate("/classes")}
+          className="px-3 py-2 bg-black text-white rounded-lg w-[8rem] h-24 flex flex-col justify-around"
+        >
           <div className="flex items-center gap-2">
             <span className="text-md">
               <Book />
@@ -63,7 +71,10 @@ export default function Overview() {
               key={event.id}
               className="px-3 py-2 bg-black text-white rounded-lg w-[8rem] h-24 flex flex-col justify-around"
             >
-              <div className="flex items-center gap-2">
+              <div
+                className="flex items-center gap-2"
+                onClick={() => navigate("/eventsmanagement")}
+              >
                 <Ticket />
                 <h2>Events</h2>
               </div>

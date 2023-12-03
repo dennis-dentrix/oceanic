@@ -71,7 +71,7 @@ export default function App() {
               maxWidth: "500px",
               padding: "16px 12px",
               backgroundColor: "#E55381",
-              color: "grey",
+              color: "white",
             },
           }}
         />

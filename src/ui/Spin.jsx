@@ -2,7 +2,7 @@ import { Spin } from "antd";
 
 function Spinner() {
   return (
-    <div className="mx-auto h-screen">
+    <div className="grid place-items-center">
       <Spin />
     </div>
   );

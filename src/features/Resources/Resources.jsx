@@ -1,9 +1,21 @@
+/* eslint-disable react/prop-types */
+import { useQuery } from "@tanstack/react-query";
+import { getAllNews } from "../../services/news";
+import Spinner from "../../ui/Spin";
+
 export default function Resources() {
+  const { data: newsData, isLoading } = useQuery({
+    queryKey: ["news"],
+    queryFn: getAllNews,
+  });
+  if (isLoading) return <Spinner />;
+  console.log(newsData);
   return (
     <div className="min-h-full w-full">
-      <section className="flex flex-col sm:flex-row sm:gap-8 sm:justify-around w-full px-3 py-4">
+      <section className="flex flex-col sm:flex-row sm:gap-4 sm:justify-around w-full px-3 py-4">
         <div>
           {/* LARGE CARD TO SHOW TOP STORY */}
+
           <article className="w-full sm:w-[40vw]">
             <img
               src="./img-10.jpeg"
@@ -25,11 +37,14 @@ export default function Resources() {
           </article>
         </div>
 
-        <div className="sm:h-screen sm:overflow-y-scroll scroll-m-1 scroll-smooth">
+        <div className="sm:h-screen sm:overflow-y-scroll scroll-m-1 scroll-smooth flex flex-col">
           {/* MINI CARDS TO SHOW OTHER RESOURCES */}
+          {newsData.map((news) => (
+            <DocumentCard news={news} key={news.id} />
+          ))}
+          {/* <ResourceCard />
           <ResourceCard />
-          <ResourceCard />
-          <ResourceCard />
+          <ResourceCard /> */}
         </div>
       </section>
 
@@ -97,23 +112,13 @@ export default function Resources() {
   );
 }
 
-function ResourceCard() {
-  // const { pageNumber, numPages } = useState();
-  return (
-    <div className="flex gap-6 ">
-      {ImageCard()}
-
-      {DocumentCard()}
-    </div>
-  );
-}
-function DocumentCard() {
+function DocumentCard({ news }) {
   return (
     <div className="w-full sm:w-[20vw] px-2 py-4">
       <img
-        src="./img-6.jpeg"
-        alt=""
-        className="w-full rounded-md shadow-sm shadow-black mb-4"
+        src={news.image}
+        alt={news.title}
+        className="w-full rounded-md shadow-sm shadow-black mb-4 w-38"
       />
 
       <div>
@@ -121,9 +126,9 @@ function DocumentCard() {
           <span className="text-grey">By: </span>
           Alex mwendwa
         </p>
-        <a href="/doc.pdf" target="_blank">
+        <a href={news.story} target="_blank" rel="noreferrer">
           <h2 className="text-black font-bold text-lg tracking-wide">
-            Saving the last of mangroove
+            {news.title}
           </h2>
         </a>
       </div>
@@ -132,18 +137,18 @@ function DocumentCard() {
 }
 
 function ImageCard() {
+  // if (isLoading) return <Spinner />;
   return (
     <div className="w-full sm:w-[20vw] px-2 py-4">
       <img
-        src="./img-6.jpeg"
+        src="{image}"
         alt=""
-        className="w-full rounded-md shadow-sm shadow-black mb-4"
+        className="w-full rounded-md shadow-sm shadow-black mb-4 h-28"
       />
-
       <div>
         <p className="text-sm text-black tracking-wide">
           <span className="text-grey">By: </span>
-          Alex mwendwa
+          Daniel mwendwa
         </p>
         <h2 className="text-black font-bold text-lg tracking-wide">
           Saving the last of mangroove
@@ -152,3 +157,13 @@ function ImageCard() {
     </div>
   );
 }
+
+// function ResourceCard() {
+//   return (
+//     <div className="flex gap-6 ">
+//       {/* <ImageCard /> */}
+
+//       <DocumentCard />
+//     </div>
+//   );
+// }
