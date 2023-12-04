@@ -32,7 +32,13 @@ export default function EventsSection() {
           <ArrowRight />
         </div>
       </div>
-      {events.map((event) => {
+      <div className="flex gap-3">
+        {events.map((event) => (
+          <EventCard event={event} key={event.id} />
+        ))}
+      </div>
+
+      {/* {events.map((event) => {
         return (
           <div
             key={event.id}
@@ -41,7 +47,7 @@ export default function EventsSection() {
             <EventCard title={event.title} description={event.description} />
           </div>
         );
-      })}
+      })} */}
     </div>
   );
 }

@@ -51,7 +51,7 @@ export default function ExamDrawer() {
       {["bottom"].map((anchor) => (
         <Fragment key={anchor}>
           <div
-            className="bg-blue text-white rounded-md px-4 py-6 w-48 flex flex-col justify-around gap-5"
+            className="bg-blue text-white rounded-md px-4 py-6 w-48 h-[14rem] flex flex-col justify-around gap-5"
             onClick={toggleDrawer(anchor, true)}
           >
             <button className="px-1 py-2 bg-white text-black rounded-full">

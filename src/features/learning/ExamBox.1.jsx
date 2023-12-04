@@ -1,47 +1,40 @@
+/* eslint-disable react/prop-types */
+import { useQuery } from "@tanstack/react-query";
 import Spinner from "../../ui/Spin";
 import { Choices } from "./Choices";
+import { getQuestion } from "../../services/examApi";
+import { Divider } from "@mui/material";
 
-export function ExamBox({
-  onClick,
-  question,
-  dispatch,
-  answer,
-  status,
-  points,
-}) {
+export function ExamBox({ onClick }) {
+  const { data: exams, isLoading } = useQuery({
+    queryKey: ["exams"],
+    queryFn: getQuestion,
+  });
+
+  if (isLoading) return <Spinner />;
   return (
     <div>
-      {status === "loading" && <Spinner />}
-      <div className="flex flex-col justify-between bg-grey px-2 rounded-md h-[75vh]">
+      <div className="flex flex-col justify-between bg-grey px-2 rounded-md ">
         <div className="w-full">
           <h3 className="font-bold text-xl">Weather test</h3>
 
-          <div className="flex flex-col gap-4 w-full ">
-            <div>
-              <h4>{question.question}</h4>
-              {question.options.map((option, index) => (
-                <Choices
-                  question={question}
-                  option={option}
-                  index={index}
-                  key={option}
-                  dispatch={dispatch}
-                  answer={answer}
-                />
-              ))}
+          {exams.map((exam) => {
+            console.log(exam.options);
+            return (
+              <div className="flex flex-col gap-4 w-full " key={exam.id}>
+                <div>
+                  <h4>{exam.question}</h4>
 
-              {/* {question.opitions ? (
-              <Choices
-                question={question}
-                dispatch={dispatch}
-                answer={answer}
-              />
-            ) : (
-              <Spinner />
-            )} */}
-            </div>
-            {ActionBtns()}
-          </div>
+                  <div className="my-4">
+                    {exam.options.map((option) => (
+                      <Choices option={option} key={option} />
+                    ))}
+                  </div>
+                </div>
+                <Divider />
+              </div>
+            );
+          })}
         </div>
 
         <div className="flex items-center justify-between px-4">
@@ -51,7 +44,7 @@ export function ExamBox({
           >
             Cancel
           </button>
-          <p>{points}/100</p>
+          <p>0/100</p>
         </div>
       </div>
     </div>

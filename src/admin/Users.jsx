@@ -41,26 +41,28 @@ export default function Users({ users, isFetching, error }) {
       </thead>
 
       <tbody className="bg-white divide-y divide-gray-200">
-        {users.map((user) => (
-          <tr key={user.id}>
-            <td className="px-4 py-2 whitespace-nowrap">{user.firstName}</td>
-            <td className="px-4 py-2 whitespace-nowrap">{user.lastName}</td>
-            <td className="px-4 py-2 whitespace-nowrap">
-              {user.numcourses !== null ? user.numcourses : 0}
-            </td>
-            <td className="px-4 py-2 whitespace-nowrap">
-              {user.eventsBooked !== null ? user.eventsBooked : 0}
-            </td>
+        {users.map((user) => {
+          return (
+            <tr key={user.id}>
+              <td className="px-4 py-2 whitespace-nowrap">{user.firstName}</td>
+              <td className="px-4 py-2 whitespace-nowrap">{user.lastName}</td>
+              <td className="px-4 py-2 whitespace-nowrap">
+                {user.numcourses !== null ? user.numcourses : 0}
+              </td>
+              <td className="px-4 py-2 whitespace-nowrap">
+                {user.eventsBooked !== null ? user.eventsBooked : 0}
+              </td>
 
-            <button
-              className="px-2 py-1 m-2 text-grey rounded-md bg-blush"
-              onClick={() => mutate(user.id)}
-              disabled={isDeleting}
-            >
-              Delete
-            </button>
-          </tr>
-        ))}
+              <button
+                className="px-2 py-1 m-2 text-grey rounded-md bg-blush"
+                onClick={() => mutate(user.id)}
+                disabled={isDeleting}
+              >
+                Delete
+              </button>
+            </tr>
+          );
+        })}
       </tbody>
     </table>
   );

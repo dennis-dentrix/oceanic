@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { NavLink, Outlet } from "react-router-dom";
 import { getCourses } from "../services/courseApi";
 import Spinner from "../ui/Spin";
+import CourseDrawer from "../features/learning/CourseDrawer";
 
 export default function ClassMngmt() {
   const {
@@ -26,13 +27,6 @@ export default function ClassMngmt() {
           <CoursesCard course={course} key={course.id} />
         ))}
       </div>
-
-      <div className="h-full overflow-y-scroll">
-        <ClassView />
-        {/* {courses.map((course) => (
-          <ClassView course={course} key={course.id} />
-        ))} */}
-      </div>
     </div>
   );
 }
@@ -52,15 +46,19 @@ function CoursesCard({ course }) {
         </div>
         <button className="bg-blue py-2 rounded-full">View</button>
       </NavLink>
+
+      <div className="h-full overflow-y-scroll">
+        <CourseDrawer />
+      </div>
     </div>
   );
 }
 
-function ClassView() {
+function ClassView({ course }) {
   return (
     <div className="bg-red-400 ">
       Content displayed
-      <Outlet />
+      <h1>{course.title}</h1>
     </div>
   );
 }

@@ -5,7 +5,6 @@ import Spinner from "./../../ui/Spin";
 import supabase from "../../services/supabase";
 import { ExamBox } from "./ExamBox.1";
 import { ExamContainer } from "./ExamContainer";
-import { ActionBtns } from "./ActionBtns";
 
 const initialState = {
   questions: [],
@@ -39,7 +38,6 @@ function reducer(state, action) {
 
     case "newAnswer": {
       const curQuestion = state.questions.at(state.index);
-      console.log(curQuestion);
       return {
         ...state,
         answer: action.payload,
@@ -64,8 +62,10 @@ function reducer(state, action) {
 
 // eslint-disable-next-line react/prop-types
 export default function Exam({ onClick }) {
-  const [{ questions, status, index, answer, points }, dispatch] =
-    React.useReducer(reducer, initialState);
+  const [{ questions, status }, dispatch] = React.useReducer(
+    reducer,
+    initialState
+  );
 
   const numQuestions = questions.length;
 
@@ -108,13 +108,7 @@ export default function Exam({ onClick }) {
 
         {status === "active" && (
           <>
-            <ExamBox
-              onClick={onClick}
-              question={questions}
-              dispatch={dispatch}
-              answer={answer}
-              points={points}
-            />
+            <ExamBox />
             {/* <ActionBtns dispatch={dispatch} answer={answer} /> */}
           </>
         )}

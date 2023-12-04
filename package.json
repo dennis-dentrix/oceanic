@@ -16,6 +16,7 @@
     "@mui/styled-engine-sc": "^5.14.12",
     "@mui/x-data-grid": "^6.18.1",
     "@react-pdf/renderer": "^3.1.14",
+    "@reduxjs/toolkit": "^2.0.1",
     "@supabase/auth-ui-react": "^0.4.6",
     "@supabase/auth-ui-shared": "^0.1.8",
     "@supabase/supabase-js": "^2.38.4",
@@ -26,6 +27,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.48.2",
     "react-hot-toast": "^2.4.1",
+    "react-redux": "^9.0.1",
     "react-router-dom": "^6.16.0",
     "styled-components": "^5.3.11"
   },

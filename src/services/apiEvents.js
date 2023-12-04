@@ -34,3 +34,18 @@ export async function deleteEvent(id) {
   }
   return data;
 }
+
+export async function createReservation(newEvent, id) {
+  let query = supabase.from("post");
+
+  if (!id) query = query.insert([{ ...newEvent }]);
+  if (id) query = query.update({ newEvent });
+
+  const { data, error } = await query.select().single();
+
+  if (error) {
+    console.error(error);
+    throw new Error("Post could not be created");
+  }
+  return data;
+}

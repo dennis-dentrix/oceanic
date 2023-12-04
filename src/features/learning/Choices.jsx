@@ -1,21 +1,12 @@
 /* eslint-disable react/prop-types */
-export function Choices({ question, option, index, dispatch, answer }) {
-  const hasAnswer = answer !== null;
+export function Choices({ option }) {
   return (
-    <div className="flex flex-col items-start gap-4 my-2">
+    <div className="flex flex-col items-start gap-4 my-2 ">
       <button
         key={option}
-        disabled={hasAnswer}
-        className={`px-3 py-1 rounded-full w-full bg-black text-grey text-lg ${
-          index === answer ? "translate-x-3 " : ""
-        } ${
-          hasAnswer
-            ? index === question.correctAnswer
-              ? "bg-blue"
-              : "bg-green text-black"
-            : ""
+        className={`px-3 py-1 rounded-full w-full bg-black text-grey text-lg"
         }`}
-        onClick={() => dispatch({ type: "newAnswer", payload: index })}
+        onClick='{() => dispatch({ type: "newAnswer", payload: index })}'
       >
         {option}
       </button>
