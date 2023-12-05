@@ -41,10 +41,10 @@ function CreatePost({ editProfile = {} }) {
   const navigate = useNavigate();
 
   const queryClient = useQueryClient();
-  const { mutate: CreatePost, isLoading: isCreating } = useMutation({
+  const { mutate: CreateProfile, isLoading: isCreating } = useMutation({
     mutationFn: createProfile,
     onSuccess: () => {
-      toast.success("Profile updates");
+      toast.success("Profile updated successfully");
       queryClient.invalidateQueries({
         queryKey: ["users"],
       });
@@ -53,12 +53,30 @@ function CreatePost({ editProfile = {} }) {
     onError: (err) => toast.error(err.message),
   });
 
+  // EDITING
+  const { mutate: EditPost, isLoading: isEditing } = useMutation({
+    mutationFn: editProfile,
+    onSuccess: () => {
+      toast.success("Post edited sucessfully");
+      queryClient.invalidateQueries({
+        queryKey: ["users"],
+      });
+      reset();
+      navigate("/dashboard");
+    },
+    onError: (err) => toast.error(err.message),
+  });
+
   if (isCreating) return <Spinner />;
 
   function onSubmit(data) {
-    CreatePost({ data });
-    // navigate("/myads/all");
+    const image = typeof data.image === "string" ? data.image : data.image[0];
+    if (isEditSession) EditPost({ newProfile: { data }, id: editID });
+
     console.log(data);
+    createProfile({ ...data, image: image });
+    reset();
+    navigate("/dashboard");
   }
   function onError(error) {
     <p>{error.message}</p>;
@@ -70,6 +88,17 @@ function CreatePost({ editProfile = {} }) {
       onSubmit={handleSubmit(onSubmit, onError)}
       className="my-6 flex flex-col items-start gap-4 h-full w-full sm:w-1/2 bg-white shadow-md shadow-blue px-3 py-2 rounded-md"
     >
+      <div>
+        <input
+          type="file"
+          id="image"
+          accept="image/*"
+          placeholder="Profile image"
+          {...register("image", {
+            required: isEditSession ? false : "This field is required",
+          })}
+        />
+      </div>
       <div className="flex flex-col items-start w-full gap-2">
         <label className="font-medium tracking-wider" htmlFor="source">
           First Name
@@ -78,9 +107,7 @@ function CreatePost({ editProfile = {} }) {
           type="text"
           name="firstName"
           placeholder="John "
-          {...register("firstName", {
-            required: "This field is required",
-          })}
+          {...register("firstName")}
           className="px-3 py-1 bg-grey font-family-inherit tracking-wider text-sm placeholder:text-blue placeholder:text-sm rounded-md focus:outline-none focus:ring-1 focus:ring-blue focus:scale-[1.01] transition-all duration-500 w-full sm:w-1/2"
         />
       </div>
@@ -90,9 +117,7 @@ function CreatePost({ editProfile = {} }) {
           type="text"
           name="lastName"
           id="lastName"
-          {...register("lastName", {
-            required: "This field is required",
-          })}
+          {...register("lastName")}
           placeholder="Doe"
           className="px-3 py-1 bg-grey font-family-inherit tracking-wider text-sm placeholder:text-blue placeholder:text-sm rounded-md focus:outline-none focus:ring-1 focus:ring-blue focus:scale-[1.01] transition-all duration-500 w-full sm:w-1/2"
         />
