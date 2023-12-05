@@ -19,6 +19,7 @@ import ExamDrawer from "./features/learning/ExamDrawer";
 import { Toaster } from "react-hot-toast";
 import { Provider } from "react-redux";
 import { store } from "./services/store";
+import Profile from "./ui/Profile";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -45,6 +46,7 @@ export default function App() {
               <Route path="events" element={<Events />} />
               <Route path="resources" element={<Resources />} />
               <Route path="newevent" element={<PostEvent />} />
+              <Route path="profile" element={<Profile />} />
               <Route path="*" element={<PageNotfound />} />
             </Route>
 

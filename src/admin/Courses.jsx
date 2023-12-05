@@ -5,8 +5,10 @@ import { NavLink, Outlet } from "react-router-dom";
 import { getCourses } from "../services/courseApi";
 import Spinner from "../ui/Spin";
 import CourseDrawer from "../features/learning/CourseDrawer";
+import { useState } from "react";
 
 export default function ClassMngmt() {
+  const [showClass, setShowclass] = useState(false);
   const {
     data: courses,
     isLoading: loadCourse,
@@ -15,50 +17,65 @@ export default function ClassMngmt() {
     queryKey: ["courses"],
     queryFn: getCourses,
   });
-  console.log(courses);
 
   if (error) return <p>Error</p>;
 
   if (loadCourse) return <Spinner />;
   return (
     <div className="space-y-6">
-      <div className="flex gap-6 items-stretch h-max">
+      <div className="flex gap-6 items-stretch h-max border-b border-black p-2">
         {courses.map((course) => (
-          <CoursesCard course={course} key={course.id} />
+          <>
+            <CoursesCard
+              course={course}
+              key={course.id}
+              setShowclass={setShowclass}
+              showClass={showClass}
+            />
+          </>
         ))}
       </div>
+      {showClass ? (
+        <ClassView />
+      ) : (
+        <p className="grid place-content-center text-xl bg-red-300 px-2 py-1 rounded-full ">
+          Click on a class to view
+        </p>
+      )}
     </div>
   );
 }
 
-function CoursesCard({ course }) {
+function CoursesCard({ course, setShowclass, showClass }) {
   console.log(course);
   return (
     <div>
-      <NavLink
-        to={`/class/${course.id}`}
-        className="bg-black text-white rounded-md px-4 py-6 w-48 h-[15rem] flex flex-col justify-around gap-5"
-      >
+      <NavLink className="bg-black text-white rounded-md px-4 py-6 w-48 h-[15rem] flex flex-col justify-around gap-5">
         <div className="flex flex-col items-end gap-3">
           <h1>{course.title}</h1>
           {/* <p className="text-sm">10 Minutes</p>
           <p className="text-sm">0/100 points</p> */}
         </div>
-        <button className="bg-blue py-2 rounded-full">View</button>
+        <button
+          className="bg-blue py-2 rounded-full"
+          onClick={(id) => setShowclass(!showClass)}
+        >
+          View
+        </button>
       </NavLink>
 
-      <div className="h-full overflow-y-scroll">
+      {/* <div className="h-full overflow-y-scroll">
         <CourseDrawer />
-      </div>
+      </div> */}
     </div>
   );
 }
 
-function ClassView({ course }) {
+function ClassView() {
   return (
-    <div className="bg-red-400 ">
+    <div className="">
       Content displayed
-      <h1>{course.title}</h1>
+      <h1>Hello world</h1>
     </div>
   );
 }

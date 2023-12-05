@@ -20,3 +20,16 @@ export async function deleteUser(id) {
 
   return data;
 }
+
+export async function createProfile() {
+  const { data, error } = await supabase
+    .from("users")
+    .insert([{ some_column: "someValue", other_column: "otherValue" }])
+    .select();
+
+  if (error) {
+    console.error(error);
+    throw new Error("Could not delete user");
+  }
+  return data;
+}

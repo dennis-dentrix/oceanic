@@ -5,7 +5,7 @@ import supabase from "../services/supabase";
 const items = [
   {
     key: "1",
-    label: <Link to="/update">Profile</Link>,
+    label: <Link to="/profile">Profile</Link>,
   },
   {
     key: "2",
