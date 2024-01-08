@@ -14,12 +14,13 @@ import EventsMngmt from "./admin/EventsMngmt";
 import Course from "./features/learning/Course";
 import ClassMngmt from "./admin/Courses";
 import Exam from "./features/learning/Exam";
-import Login from "./user/Login";
 import ExamDrawer from "./features/learning/ExamDrawer";
 import { Toaster } from "react-hot-toast";
 import { Provider } from "react-redux";
 import { store } from "./services/store";
 import Profile from "./ui/Profile";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -36,14 +37,15 @@ export default function App() {
         <BrowserRouter>
           <Routes>
             <Route path="login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
             <Route element={<AppLayout />}>
               <Route path="/dashboard" element={<Homepage />} />
+              <Route path="/events" element={<Events />} />
               <Route index element={<Navigate replace to="/dashboard" />} />
               <Route path="courses" element={<Course />} />
               <Route path="exam" element={<Exam />} />
               <Route path="courseView" element={<ExamDrawer />} />
 
-              <Route path="events" element={<Events />} />
               <Route path="resources" element={<Resources />} />
               <Route path="newevent" element={<PostEvent />} />
               <Route path="profile" element={<Profile />} />

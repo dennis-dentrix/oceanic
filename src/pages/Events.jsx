@@ -23,8 +23,8 @@ export default function Events() {
   if (error) return <div>Error</div>;
 
   return (
-    <div className="md:grid md:grid-cols-[auto_1fr] gap-6">
-      <div className="col-start-1 col-end-2">
+    <div className="flex justify-between">
+      <div className="w-2/3">
         {/* <FormDialog /> */}
         <form className="flex items-center border rounded-md px-3">
           <input
