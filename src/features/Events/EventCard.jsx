@@ -1,11 +1,29 @@
-import { useDispatch } from "react-redux";
-import { addItem } from "./EventSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addItem,
+  getCurrentEventQuantityById,
+  inreaseItemQuantity,
+} from "./EventSlice";
+import DeleteBtn from "./DeleteBtn";
 
 /* eslint-disable react/prop-types */
-export default function EventCard(event) {
-  const { id: eventID, title, description, startDate, endDate } = event.event;
+export default function EventCard({ event }) {
+  const {
+    id: eventID,
+    title,
+    description,
+    startDate,
+    endDate,
+    quantity,
+  } = event;
+
   const dispatch = useDispatch();
 
+  const currentEventQuantity = useSelector(
+    getCurrentEventQuantityById(eventID)
+  );
+  console.log(currentEventQuantity);
+  const isIncart = currentEventQuantity > 0;
   function handleAddItem() {
     const newEvent = {
       itemId: eventID,
@@ -13,9 +31,11 @@ export default function EventCard(event) {
       description,
       startDate,
       endDate,
+      quantity,
     };
-    console.log(newEvent);
+
     dispatch(addItem(newEvent));
+    dispatch(inreaseItemQuantity(eventID));
   }
   return (
     <>
@@ -39,12 +59,19 @@ export default function EventCard(event) {
                   <span>{startDate}</span>
                   to: <span>{endDate}</span>
                 </p>
-                <button
-                  className=" m-2 text-base bg-blue text-grey rounded-full px-2 py-1 "
-                  onClick={handleAddItem}
-                >
-                  Reserve
-                </button>
+                <div className="flex items-center">
+                  {isIncart ? (
+                    <DeleteBtn id={eventID} />
+                  ) : (
+                    <button
+                      className=" m-2 text-base bg-blue text-grey rounded-full px-2 py-1 "
+                      onClick={handleAddItem}
+                    >
+                      Reserve
+                    </button>
+                  )}
+                </div>
+                {/* {isIncart && <DeleteBtn eventID={eventID} />} */}
               </div>
             </div>
           </div>

@@ -44,7 +44,7 @@ export default function AppLayout() {
       <Header />
 
       {/* <main className="h-full flex flex-col flex-auto bg-grey"> */}
-      <main className="px-8 py-4 w-full mt-4">
+      <main className="px-8 py-4 w-full  mt-4">
         <Outlet />
       </main>
 

@@ -18,7 +18,7 @@ import ExamDrawer from "./features/learning/ExamDrawer";
 import { Toaster } from "react-hot-toast";
 import { Provider } from "react-redux";
 import { store } from "./services/store";
-import Profile from "./ui/Profile";
+import Profile from "./pages/Profile";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 

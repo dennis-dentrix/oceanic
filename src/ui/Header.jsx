@@ -103,7 +103,7 @@ export default function Header() {
               <Link
                 as={Button}
                 onClick={handleLogout}
-                className="border-blue bg-blue text-white rounded-full py-1 px-2"
+                className="bg-blue text-white py-1 px-6 rounded-md"
               >
                 Log out
               </Link>

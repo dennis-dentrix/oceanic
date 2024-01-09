@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { ArrowLeft, X } from "react-bootstrap-icons";
+import { ArrowLeft } from "react-bootstrap-icons";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -8,7 +8,7 @@ import Spinner from "./Spin";
 import { InputField } from "./InputField";
 import { createProfile } from "../services/userApi";
 
-export default function Profile() {
+export default function ProfileForm() {
   return (
     <>
       <div className="flex flex-col sm:items-center items-start ">
@@ -17,11 +17,6 @@ export default function Profile() {
             <ArrowLeft />
           </div>
           <h1 className="text-blue tracking-wider text-lg">update profile</h1>
-
-          {/* <div className="flex items-center gap-2">
-            <X />
-            <p className="text-sm text-maroon">Clear</p>
-          </div> */}
         </div>
 
         <CreatePost />
@@ -42,7 +37,7 @@ function CreatePost({ editProfile = {} }) {
 
   const queryClient = useQueryClient();
   const { mutate: CreateProfile, isLoading: isCreating } = useMutation({
-    mutationFn: createProfile,
+    mutationFn: CreateProfile,
     onSuccess: () => {
       toast.success("Profile updated successfully");
       queryClient.invalidateQueries({
@@ -123,36 +118,6 @@ function CreatePost({ editProfile = {} }) {
         />
       </InputField>
 
-      {/* <div className="flex flex-col items-start w-full gap-2">
-        <label className="font-medium tracking-wider" htmlFor="source">
-          Minimum price (kes)
-        </label>
-        <input
-          type="text"
-          name="price"
-          placeholder="eg. 200"
-          {...register("price", {
-            required: "This field is required",
-          })}
-          className="px-3 py-1 bg-grey font-family-inherit tracking-wider text-sm placeholder:text-green placeholder:text-sm rounded-md focus:outline-none focus:ring-1 focus:ring-green focus:scale-[1.01] transition-all duration-500 w-full sm:w-1/2"
-        />
-      </div> */}
-
-      {/* <div className="flex flex-col items-start w-full gap-2">
-        <label className="font-medium tracking-wider" htmlFor="source">
-          Source
-        </label>
-        <input
-          type="text"
-          name="source"
-          placeholder="eg. Lake Baringo"
-          className="px-3 py-1 bg-grey font-family-inherit tracking-wider text-sm placeholder:text-green placeholder:text-sm rounded-md focus:outline-none focus:ring-1 focus:ring-green focus:scale-[1.01] transition-all duration-500 w-full sm:w-1/2"
-          {...register("source", {
-            required: "This field is required",
-          })}
-        />
-      </div> */}
-
       <div className="flex flex-col items-start w-full gap-2">
         <label className="font-medium tracking-wider" htmlFor="phone">
           Phone
@@ -165,51 +130,6 @@ function CreatePost({ editProfile = {} }) {
           className="px-3 py-1 bg-grey font-family-inherit tracking-wider text-sm placeholder:text-blue placeholder:text-sm rounded-md focus:outline-none focus:ring-1 focus:ring-blue focus:scale-[1.01] transition-all duration-500 w-full sm:w-1/2"
         />
       </div>
-      {/* 
-      <div className="flex flex-col items-start w-full gap-2">
-        <label className="font-medium tracking-wider" htmlFor="description">
-          Description
-        </label>
-        <textarea
-          name="description"
-          id="description"
-          {...register("description", {
-            required: "This field is required",
-          })}
-          cols="30"
-          rows="10"
-          className="bg-grey text-sm focus:outline-none focus:ring-1 focus:ring-blue focus:scale-[1.01] transition-all duration-500 px-2 py-1"
-        ></textarea>
-      </div> */}
-
-      {/* <div className="flex items-center gap-6">
-        <div className="flex items-center gap-3">
-          <label htmlFor="inStock" className="font-medium tracking-wider">
-            Instock
-          </label>
-          <input
-            type="checkbox"
-            name="inStock"
-            defaultChecked
-            id=""
-            {...register("inStock")}
-            className="px-3 py-1 bg-grey font-family-inherit tracking-wider text-sm placeholder:text-blue placeholder:text-sm rounded-md focus:outline-none focus:ring-1 focus:ring-blue focus:scale-[1.01] transition-all duration-500 w-full sm:w-1/2"
-          />
-        </div>
-
-        <div className="flex items-center gap-3">
-          <label htmlFor="delivery" className="font-medium tracking-wider">
-            Delivery
-          </label>
-          <input
-            type="checkbox"
-            name="delivery"
-            id=""
-            {...register("delivery")}
-            className="px-3 py-1 bg-grey font-family-inherit tracking-wider text-sm placeholder:text-blue placeholder:text-sm rounded-md focus:outline-none focus:ring-1 focus:ring-blue focus:scale-[1.01] transition-all duration-500 w-full sm:w-1/2"
-          />
-        </div>
-      </div> */}
 
       <div className="w-[18vw]">
         <button
