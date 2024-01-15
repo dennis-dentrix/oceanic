@@ -6,7 +6,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import Spinner from "./Spin";
 import { InputField } from "./InputField";
-import { createProfile } from "../services/userApi";
+import { createUser } from "../services/userApi";
 
 export default function ProfileForm() {
   return (
@@ -37,7 +37,7 @@ function CreatePost({ editProfile = {} }) {
 
   const queryClient = useQueryClient();
   const { mutate: CreateProfile, isLoading: isCreating } = useMutation({
-    mutationFn: CreateProfile,
+    mutationFn: createUser,
     onSuccess: () => {
       toast.success("Profile updated successfully");
       queryClient.invalidateQueries({

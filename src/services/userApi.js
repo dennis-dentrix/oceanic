@@ -11,6 +11,23 @@ export async function getUsers() {
   return users;
 }
 
+export async function signInWithEmail() {
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email: "oceanicadmin@gmail.com",
+    password: "",
+
+    options: {
+      redirect: "/admin",
+    },
+  });
+
+  if (error) {
+    console.error(error);
+    throw new Error("Could not login to account");
+  }
+  return data;
+}
+
 export async function deleteUser(id) {
   const { data, error } = await supabase.from("users").delete().eq("id", id);
   if (error) {
@@ -21,36 +38,13 @@ export async function deleteUser(id) {
   return data;
 }
 
-export async function createProfile(newProfile, id) {
-  const hasImagePath = newProfile.image?.startsWith?.(supabaseUrl);
-  const imageName = `${Math.random()}-${newProfile.image.name}`.replaceAll(
-    "/",
-    ""
-  );
-  const imagePath = hasImagePath
-    ? newProfile.image
-    : `${supabaseUrl}/storage/v1/object/public/cabin-images/${imageName}`;
-  let query = supabase.from("users");
-
-  if (!id) query = query.insert([{ ...newProfile, image: imagePath }]);
-  if (id) query = query.update({ newProfile });
-
-  const { data, error } = await query.select().single();
+export async function createUser() {
+  const { data: profiles, error } = await supabase.from("profiles").select("*");
 
   if (error) {
     console.error(error);
-    throw new Error("Profile could not be created");
+    throw new Error("Could not delete user");
   }
-  return data;
-  // const { data: users, error } = await supabase
-  //   .from("users")
-  //   .insert([{ ...newProfile }])
-  //   .select()
-  //   .single();
 
-  // if (error) {
-  //   console.error(error);
-  //   throw new Error("could not create profile");
-  // }
-  // return users;
+  return profiles;
 }

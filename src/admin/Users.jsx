@@ -10,7 +10,7 @@ export default function Users({ users, isFetching, error }) {
     mutationFn: deleteUser,
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["users"],
+        queryKey: ["profiles"],
       });
       toast.success("User deleted");
     },
@@ -47,10 +47,10 @@ export default function Users({ users, isFetching, error }) {
               <td className="px-4 py-2 whitespace-nowrap">{user.firstName}</td>
               <td className="px-4 py-2 whitespace-nowrap">{user.lastName}</td>
               <td className="px-4 py-2 whitespace-nowrap">
-                {user.numcourses !== null ? user.numcourses : 0}
+                {user.numcourses !== null ? user?.numcourses : 0}
               </td>
               <td className="px-4 py-2 whitespace-nowrap">
-                {user.eventsBooked !== null ? user.eventsBooked : 0}
+                {user.eventsBooked !== null ? user?.eventsBooked : 0}
               </td>
 
               <button

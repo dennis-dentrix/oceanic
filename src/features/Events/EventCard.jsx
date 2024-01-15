@@ -22,7 +22,7 @@ export default function EventCard({ event }) {
   const currentEventQuantity = useSelector(
     getCurrentEventQuantityById(eventID)
   );
-  console.log(currentEventQuantity);
+
   const isIncart = currentEventQuantity > 0;
   function handleAddItem() {
     const newEvent = {

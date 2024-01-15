@@ -1,30 +1,34 @@
 /* eslint-disable react/prop-types */
 import { useQuery } from "@tanstack/react-query";
-import { getCourses } from "../services/courseApi";
 import Spinner from "../ui/Spin";
+import { Link } from "react-router-dom";
+import { getClasses } from "../services/classApi";
 
 function Homepage() {
-  const { data: courses, isLoading } = useQuery({
-    queryKey: ["courses"],
-    queryFn: getCourses,
+  const { data: classes, isLoading } = useQuery({
+    queryKey: ["classes"],
+    queryFn: getClasses,
   });
   if (isLoading) return <Spinner />;
-  // console.log(courses);
+  console.log(classes);
   return (
     <div>
-      <UserCards />
+      <div className="flex gap-3 items-center">
+        <UserCards num={"6"} text={"Enrolled classes"} />
+        <UserCards num={"4"} text={"Completed courses"} />
+      </div>
 
       <div className="py-4">
         <h4>All courses</h4>
 
         <div className="flex  grid-flow-col flex-wrap gap-3 place-items-center py-4 ">
-          {courses.map((course) => (
+          {classes.map((cls) => (
             <CourseCard
-              title={course.title}
-              description={course.description}
-              image={course.image}
-              file={course.file}
-              key={course.id}
+              key={cls.id}
+              title={cls.title}
+              description={cls.description}
+              image={cls.image}
+              id={cls.id}
             />
           ))}
         </div>
@@ -44,23 +48,16 @@ function Homepage() {
   );
 }
 
-function UserCards() {
+export function UserCards({ num, text }) {
   return (
-    <div className="flex gap-3 items-center">
-      <div className="flex gap-3 w-36 border px-2 items-center rounded-lg py-3">
-        <p className="text-3xl">6</p>
-        <p className="text-sm tracking-wider">Enrolled courses</p>
-      </div>
-
-      <div className="flex gap-3 w-36 border px-2 items-center rounded-lg py-3">
-        <p className="text-3xl">4</p>
-        <p className="text-sm tracking-wider">Completed courses</p>
-      </div>
+    <div className="flex gap-3 w-36 border px-2 items-center rounded-lg py-3">
+      <p className="text-3xl">{num}</p>
+      <p className="text-sm tracking-wider">{text}</p>
     </div>
   );
 }
 
-function CourseCard({ title, description, image, file }) {
+function CourseCard({ title, description, image, id }) {
   return (
     <div className="rounded-md border h-[21rem] w-52">
       <img src={image} alt={title} className="w-full" />
@@ -72,11 +69,12 @@ function CourseCard({ title, description, image, file }) {
         </p>
 
         <div>
-          <button className="bg-gray-200 rounded-lg px-2 py-1">
-            <a href={file} target="_blank" rel="noopener noreferrer">
-              Get Content
-            </a>
-          </button>
+          <Link
+            className="bg-gray-200 rounded-lg px-2 py-1"
+            to={`/class/${id}`}
+          >
+            View class
+          </Link>
         </div>
       </div>
     </div>

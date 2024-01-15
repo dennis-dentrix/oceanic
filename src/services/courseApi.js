@@ -9,3 +9,11 @@ export async function getCourses() {
   }
   return courses;
 }
+
+export async function deleteCourse(id) {
+  const { error } = await supabase.from("courses").delete().eq("id", id);
+
+  if (error) {
+    throw new Error(`Failed to delete course with id ${id}`);
+  }
+}

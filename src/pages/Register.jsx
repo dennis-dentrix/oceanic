@@ -13,16 +13,17 @@ function Register() {
   const [msg, setMsg] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const register = (email, password) =>
+  const register = (email, password) => {
     supabase.auth.signUp({ email, password });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (
       !passwordRef.current?.value ||
       !emailRef.current?.value ||
-      !confirmPasswordRef.current?.value
+      !confirmPasswordRef.current?.value ||
+      !nameRef.current?.value
     ) {
       setErrorMsg("Please fill all the fields");
     }
@@ -37,7 +38,8 @@ function Register() {
       setLoading(true);
       const { data, error } = await register(
         emailRef.current.value,
-        passwordRef.current.value
+        passwordRef.current.value,
+        nameRef.current.value
       );
       if (!error && data) {
         setMsg(

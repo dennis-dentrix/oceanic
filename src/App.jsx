@@ -1,18 +1,16 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
 import Homepage from "./pages/Homepage";
 import Events from "./pages/Events";
 import AppLayout from "./ui/AppLayout";
 import PageNotfound from "./pages/PageNotfound";
 import Resources from "./features/Resources/Resources";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import PostEvent from "./pages/PostEvent";
 
 // ADMIN IMPORTS
 import Dashboard from "./admin/Dashboard";
-import Overview from "./admin/Overview";
-import EventsMngmt from "./admin/EventsMngmt";
 import Course from "./features/learning/Course";
-import ClassMngmt from "./admin/Courses";
 import Exam from "./features/learning/Exam";
 import ExamDrawer from "./features/learning/ExamDrawer";
 import { Toaster } from "react-hot-toast";
@@ -21,6 +19,12 @@ import { store } from "./services/store";
 import Profile from "./pages/Profile";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import Adminlogin from "./admin/Adminlogin";
+import AdminUsers from "./admin/AdminUsers";
+import AdminClasses from "./admin/AdminClasses";
+import AdminEvents from "./admin/AdminEvents";
+import { Class } from "./admin/Class";
+import UserClass from "./pages/UserClass";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -38,10 +42,14 @@ export default function App() {
           <Routes>
             <Route path="login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/adminLogin" element={<Adminlogin />} />
+
             <Route element={<AppLayout />}>
+              <Route index element={<Navigate replace to="/dashboard" />} />
               <Route path="/dashboard" element={<Homepage />} />
               <Route path="/events" element={<Events />} />
-              <Route index element={<Navigate replace to="/dashboard" />} />
+              <Route path="/class/:id" element={<UserClass />} />
+
               <Route path="courses" element={<Course />} />
               <Route path="exam" element={<Exam />} />
               <Route path="courseView" element={<ExamDrawer />} />
@@ -52,15 +60,27 @@ export default function App() {
               <Route path="*" element={<PageNotfound />} />
             </Route>
 
-            {/* ADMIN PAGE ROUTES */}
             <Route element={<Dashboard />}>
-              {/* <Route path="admin" element={<Dashboard />} /> */}
-
-              <Route index element={<Navigate replace to="/admin" />} />
-              <Route path="admin" element={<Overview />} />
-              <Route path="classes" element={<ClassMngmt />} />
-              <Route path="eventsmanagement" element={<EventsMngmt />} />
+              <Route index element={<Navigate replace to={"/admin"} />} />
+              <Route path="admin" element={<AdminUsers />} />
+              <Route path="admin/classes" element={<AdminClasses />} />
+              {/* CLASS WITH ITS SECIFIC ID */}
+              <Route path="admin/class/:id" element={<Class />} />
+              <Route path="admin/events" element={<AdminEvents />} />
             </Route>
+
+            {/* ADMIN PAGE ROUTES */}
+            {/* <Route index element={<Navigate replace to="/admin" />} /> */}
+            {/* <Route element={<Dashboard />}>
+              <Route path="admin" element={<Overview />} />
+              <Route>
+                <Route index element={<Navigate replace to="/admin/users" />} />
+                <Route path="/adimn/users" element={<AdminUsers />} />
+              </Route>
+            </Route> */}
+
+            {/* <Route path="classes" element={<ClassMngmt />} /> */}
+            {/* <Route path="eventsmanagement" element={<EventsMngmt />} /> */}
           </Routes>
           <Toaster
             position="bottom-left"

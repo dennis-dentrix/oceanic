@@ -1,16 +1,7 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
-import {
-  Calendar,
-  CameraReels,
-  Image,
-  Pen,
-  Plus,
-  Link,
-} from "react-bootstrap-icons";
+import { Pen } from "react-bootstrap-icons";
 
 export function PostForm({ placeholder, onClick }) {
-  const [moreButtons, showMore] = useState(false);
   return (
     // <div className="bg-white px-4 py-2 my-2">
     <div className="transition-all duration-500 space-x-4 flex flex-col md:flex-row">
@@ -25,14 +16,14 @@ export function PostForm({ placeholder, onClick }) {
           />
         </form>
         <div className="px-1 py-1 shadow-md rounded-full ">
-          <Plus
+          {/* <Plus
             style={{ height: 30, width: 30 }}
             onClick={() => showMore(!moreButtons)}
-          />
+          /> */}
         </div>
       </div>
 
-      {moreButtons && (
+      {/* {moreButtons && (
         <div className="flex items-center gap-3 my-3 md:my-0">
           <span className="text-black flex items-center gap-1">
             <Image className="text-blue" />
@@ -51,7 +42,7 @@ export function PostForm({ placeholder, onClick }) {
             <p>Schedule</p>
           </span>
         </div>
-      )}
+      )} */}
     </div>
   );
 }

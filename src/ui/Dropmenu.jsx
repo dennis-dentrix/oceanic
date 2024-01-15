@@ -1,7 +1,11 @@
 import { DownOutlined } from "@ant-design/icons";
 import { Dropdown, Space } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import supabase from "../services/supabase";
+
+function handleAdmin() {
+  supabase.auth.signOut();
+}
 const items = [
   {
     key: "1",
@@ -19,7 +23,11 @@ const items = [
   // },
   {
     key: "3",
-    label: <Link to="/admin">Admin</Link>,
+    label: (
+      <div onClick={handleAdmin}>
+        <Link to="/admin">Admin</Link>
+      </div>
+    ),
   },
   {
     key: "4",

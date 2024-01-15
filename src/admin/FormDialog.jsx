@@ -1,18 +1,17 @@
 import { useState } from "react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useForm } from "react-hook-form";
 import {
   Dialog,
   DialogTitle,
   DialogContent,
   DialogContentText,
+  Button,
+  TextField,
 } from "@mui/material";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
 
 import { PostForm } from "../ui/PostForm";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useForm } from "react-hook-form";
-import { createEvent, getEvents } from "../services/apiEvents";
-import Spinner from "../ui/Spin";
+import { createEvent } from "../services/apiEvents";
 
 export function FormDialog() {
   const [open, setOpen] = useState(false);
@@ -45,7 +44,7 @@ export function FormDialog() {
   return (
     <>
       <div onClick={handleClickOpen}>
-        <PostForm placeholder="Post Event" />
+        <PostForm placeholder="Create Event" />
       </div>
       <Dialog open={open} onClose={handleClose} className="h-max">
         <DialogTitle>Upload Event</DialogTitle>

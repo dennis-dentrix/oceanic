@@ -3,7 +3,7 @@ import { Alert, Button, Card, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthProvider";
 
-const Login = () => {
+const Adminlogin = () => {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const [errorMsg, setErrorMsg] = useState("");
@@ -36,11 +36,17 @@ const Login = () => {
     <div className="grid place-content-center w-full my-8 ">
       <Card className="w-full">
         <Card.Body>
-          <h2 className="text-center mb-4">Login</h2>
+          <h2 className="text-center mb-4">Admin Login </h2>
           <Form onSubmit={handleSubmit}>
             <Form.Group id="email">
               <Form.Label>Email</Form.Label>
-              <Form.Control type="email" ref={emailRef} required />
+              <Form.Control
+                type="email"
+                ref={emailRef}
+                defaultValue={"oceanicadmin@gmail.com"}
+                disabled
+                required
+              />
             </Form.Group>
             <Form.Group id="password">
               <Form.Label>Password</Form.Label>
@@ -62,16 +68,13 @@ const Login = () => {
             </div>
           </Form>
         </Card.Body>
-        <div className="w-100 text-center mt-2">
-          New User? <Link to={"/register"}>Register</Link>
-        </div>
 
         <div className="w-100 text-center mt-2 underline">
-          <Link to={"/adminLogin"}>Login as admin</Link>
+          <Link to={"/admin"}>Login as regular user</Link>
         </div>
       </Card>
     </div>
   );
 };
 
-export default Login;
+export default Adminlogin;

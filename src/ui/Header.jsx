@@ -3,12 +3,9 @@ import { Link, NavLink } from "react-router-dom";
 import HeaderDrawer from "./HeaderDrawer";
 import Dropmenu from "./Dropmenu";
 import { Avatar } from "@mui/material";
-import { useQuery } from "@tanstack/react-query";
-import { getUsers } from "../services/userApi";
-import Spinner from "./Spin";
 import img from "/prof.jpg";
 import { useAuth } from "../context/AuthProvider";
-import { Button, Nav } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 const activeNav = "text-blue border-b border-black transition-all duration-200";
 
@@ -25,16 +22,6 @@ export default function Header() {
       console.log(error);
     }
   };
-  const {
-    data: users,
-    isLoading,
-    error,
-  } = useQuery({
-    queryKey: ["users"],
-    queryFn: getUsers,
-  });
-
-  if (isLoading) return <Spinner />;
 
   return (
     <header className="flex items-center justify-between gap-3 border-b-2 border-grey px-8 py-4 w-full ">
