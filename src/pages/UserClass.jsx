@@ -1,17 +1,32 @@
-import { GridDeleteIcon } from "@mui/x-data-grid";
 import { useQuery } from "@tanstack/react-query";
 import { getCourses } from "../services/courseApi";
 import Spinner from "../ui/Spin";
+import { useState } from "react";
 
 function UserClass() {
+  const [enroll, setEnroll] = useState(false);
   const { data: courses, isLoading } = useQuery({
     queryKey: ["courses"],
     queryFn: getCourses,
   });
+
   if (isLoading) return <Spinner />;
-  console.log(courses);
+
+  function handleEnroll() {
+    setEnroll(!enroll);
+  }
   return (
-    <div className="border-bottom py-2 rounded-md h-screen">
+    <div className="border-bottom rounded-md h-screen">
+      {enroll ? (
+        ""
+      ) : (
+        <button
+          className="px-2 py-1 text-grey rounded-md bg-blush"
+          onClick={handleEnroll}
+        >
+          Enroll
+        </button>
+      )}
       <table className="min-w-full divide-y divide-gray-200">
         <thead className="bg-gray-50">
           <tr>
@@ -23,6 +38,7 @@ function UserClass() {
               File
             </th>
             <th></th>
+            <th></th>
           </tr>
         </thead>
 
@@ -33,20 +49,21 @@ function UserClass() {
 
               <td className="px-4 py-2 whitespace-nowrap">
                 <a
-                  href={course.file}
+                  aria-disabled={enroll}
+                  href={enroll ? course.file : "#"}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center shadow-md px-2 py-1 border-bottom border-red-300 text-base leading-6 font-medium text-black hover:text-red-500 focus:outline-none focus:border-red-300 transition ease-in-out duration-150 sm:text-base group"
+                  className="inline-flex items-center shadow-md px-2 py-1 border-bottom border-red-300 text-base leading-6 font-medium text-black hover:text-red-500 focus:outline-none focus:border-red-300 transition ease-in-out duration-150 sm:text-base group pointer"
                 >
                   View file
                 </a>
               </td>
 
-              <div className="flex gap-2">
+              {/* <td className="flex gap-2">
                 <button className="px-2 py-1 m-2 text-grey rounded-md bg-blush">
                   <GridDeleteIcon />
                 </button>
-              </div>
+              </td> */}
             </tr>
           ))}
         </tbody>

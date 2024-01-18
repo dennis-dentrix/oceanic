@@ -31,3 +31,7 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+html {
+  height: 100%;
+}

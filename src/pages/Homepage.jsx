@@ -10,7 +10,7 @@ function Homepage() {
     queryFn: getClasses,
   });
   if (isLoading) return <Spinner />;
-  console.log(classes);
+
   return (
     <div>
       <div className="flex gap-3 items-center">

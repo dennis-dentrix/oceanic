@@ -28,7 +28,6 @@ const cartSlice = createSlice({
 });
 
 export const getCart = (state) => {
-  console.log(state.cart);
   return state.cart.cart;
 };
 
